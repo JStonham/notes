@@ -59,3 +59,23 @@ public class Main {
 }
 ```
 The simple syntax for creating java applications has been modified to add a conditional. A variable (condition) in the form of a String has been given the name Jen and, if the condition is met, hello dogs will be printed, if not, hello world will be printed.
+
+# Java Data Types
+
+Java has some different data types to SQL. Here are some similarities and differences:
+
+## SQL          ## Java
+float           float
+date            Date
+datetime        DateTime
+int             int
+bigint          long
+varchar         String
+null            null
+
+Java also has some additional data types that SQL doesn't have:
+
+double float (use for all decimals)
+byte
+boolean (true or false)
+
