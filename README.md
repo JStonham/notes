@@ -91,12 +91,9 @@ public class Main {
 }
 ```
 
-There are 4 data types used in the above sentence. String, int, double and boolean.
+There are 4 data types used in the above sentence: String, int, double and boolean.
 
-String is used for "Jen" and most of the other words in the sentence
-int is used for 0
-double is used for 2.4
-boolean is used for false
+String is used for "Jen" and most of the other words in the sentence, int is used for 0, double is used for 2.4 and boolean is used for false.
 
 The variables need a data type, then a name and then a condition.
 
