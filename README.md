@@ -72,7 +72,7 @@ float, Date, DateTime, int, long, String, null.
 
 Java also has some additional data types that SQL doesn't have:
 
-double float (use for all decimals), byte, boolean (true or false).
+double (higher precision float, use for all decimals), byte, boolean (true or false).
 
 # Variables
 
