@@ -142,13 +142,13 @@ public class Main {
 
 Classes are moulds for objects. They define fields and methods that objects possess. The class itself doesn't have the fields or possibility of using these methods.
 
-Example: Object is a lamp. It has fields including bulb and shade. It has methods including turn on/off and shine.
+Example: Object is a dog called Bertie. It has fields including collar, colour and microchipped. It has methods including bark and fetch ball.
 
 To define the method of an object we need: a return type, a name (written in an imperative style), input argument(s) and a bracket body.
 
 ## Defining an Object
 
-The Object below has fields: collar, colour and microchipped and a method called bark.
+The Object below has fields (collar, colour and microchipped) and a method (bark).
 
 ``` java
 public class Dog {
@@ -168,11 +168,13 @@ public class Dog {
 
 ## Using an instance of an Object
 
+The statement below will return 'Bertie says woof' as the first condition 'Bertie says ruff' was not met.
+
 ``` java
 public class Main {
     public static void main(String[] args) {
         Dog bertie = new Dog();
-        String bertieSays = bertie.bark( 6);
+        String bertieSays = bertie.bark(6);
         System.out.println("Bertie says " + bertieSays);
     }
 }
