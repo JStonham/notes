@@ -97,5 +97,43 @@ String is used for "Jen" and most of the other words in the sentence, int is use
 
 The variables need a data type, then a name and then a condition.
 
-The String used for most of the sentence needs the format " "+" "+" "+" "+"." as the words need spaces between them and the sentence needs a fullstop after the boolean condition.
+The String used for most of the sentence needs the format " "+String+" "+int+" "+double+" "+boolean+"." as the words need spaces between them and the sentence needs a fullstop after the boolean condition.
 
+# Nested Ifs
+
+Introducing...
+||  or
+&&  and
+!  not
+
+Don't use !! as this has the same effect as a double negative turning the value back to positive.
+
+Both of the below if, else if and else statements have the same outcome, but the first statement uses and/or to remove the need for the second else if.
+
+The statements have the following outcomes: If String name is Jen/Roger and if likesDogs is true then 'hello dogs and Jen/Roger' will be returned, if String name is not Jen/Roger and if likesDogs is true then 'hello dogs' will be returned, and if likesDogs is false then 'hello '+ String name value will be returned (even if String name is Jen/Roger).
+
+``` java
+public class Main {
+    public static void main(String[] args) {
+        String name = "Walter";
+        boolean likesDogs = true;
+        if (likesDogs &&(name.equals("Jen") || name.equals("Roger"))) {
+            System.out.println("hello dogs and "+ name +"!");
+        } else if (likesDogs) {
+            System.out.println("hello dogs!");
+        } else {
+            System.out.println("hello "+ name +"!");
+        }
+
+        if (likesDogs && name.equals("Jen")) {
+            System.out.println("hello dogs and Jen!");
+        } else if (likesDogs && name.equals("Roger")){
+            System.out.println("hello dogs and Roger!");
+        } else if(!(!likesDogs)) {
+            System.out.println("hello dogs!");
+        } else {
+            System.out.println("hello "+ name + "!");
+        }
+    }
+}
+```
