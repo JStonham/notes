@@ -150,7 +150,7 @@ To define the method of an object we need: a return type, a name (written in an 
 
 The Object below has fields: collar, colour and microchipped and a method called bark.
 
-''' java
+``` java
 public class Dog {
     String collar;
     String colour;
@@ -168,7 +168,7 @@ public class Dog {
 
 ## Using an instance of an Object
 
-''' java
+``` java
 public class Main {
     public static void main(String[] args) {
         Dog bertie = new Dog();
