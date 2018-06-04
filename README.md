@@ -137,3 +137,11 @@ public class Main {
     }
 }
 ```
+
+# Classes and Objects
+
+Classes are moulds for objects. They define fields and methods that objects possess. The class itself doesn't have the fields or possibility of using these methods.
+
+Example: Object is a lamp. It has fields including bulb and shade. It has methods including turn on/off and shine.
+
+To define the method of an object we need: a return type, a name (written in an imperative style), input argument(s) and a bracket body.
