@@ -196,9 +196,9 @@ public enum FlingableObject {
 }
 ```
 
-# Case Statements
+# Case Statements within a Method
 
-A list of variables, which in this case assigns return values to an enum. Make sure to include a default return value at the end!
+A list of cases, which in this case is within a method and returns a value for each enum option. Make sure to include a default return value at the end!
 
 ``` java
 String fetch(FlingableObject flingableObject) {
@@ -212,9 +212,9 @@ String fetch(FlingableObject flingableObject) {
     }
 ```
 
-# Using an instance of an enum
+# Using an enum
 
-The statement below defines a method for playing fetch with scout. I throw a ball, Scout fetches the ball, I say "Good Boy!"
+The statement below defines a method for playing fetch with scout. I throw a flingable object (in this case a ball), Scout fetches the ball, I say "Good Boy!"
 
 ``` java
 public class Application {
