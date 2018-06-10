@@ -211,3 +211,17 @@ String fetch(FlingableObject flingableObject) {
         }
     }
 ```
+
+# Using an instance of an enum
+
+The statement below defines a method for playing fetch with scout. I throw a ball, Scout fetches the ball, I say "Good Boy!"
+
+``` java
+public class Application {
+    void run() {
+    System.out.println("Jen throws "+ FlingableObject.BALL);
+        String response = scout.fetch(FlingableObject.BALL);
+        System.out.println("Jen says \"" + response + "\"");
+        }
+  }
+```
