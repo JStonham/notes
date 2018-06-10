@@ -180,7 +180,7 @@ public class Main {
 }
 ```
 
-## Enumeration (enum)
+# Enumeration (enum)
 
 A finite list of possible values. Similar to objects in that it can have fields and methods. It's not possible to use the syntax 'new' with enum. For each possible enum value, what Java does under the hood is assign a number (called an 'ordinal') to each. Java really only knows about this number, but the programmer may use an easy-to-read name instead.
 
@@ -194,4 +194,20 @@ public enum FlingableObject {
     TOY,
     HOT_DOG
 }
+```
+
+# Case Statements
+
+A list of variables, which in this case assigns return values to an enum. Make sure to include a default return value at the end!
+
+``` java
+String fetch(FlingableObject flingableObject) {
+        switch (flingableObject) {
+            case TOY: return "That's not your toy, give it back!";
+            case BALL: return "Good boy!";
+            case STICK: return "Have a treat!";
+            case FRISBEE: return "That's not what I threw!";
+            default: return "I don't know what this is!";
+        }
+    }
 ```
