@@ -225,3 +225,35 @@ public class Application {
         }
   }
 ```
+
+# Using a for loop
+
+The for loop below effectively says: For all dogs, create a variable dog of type Dog, call the method (bark) and return what the dogs will say.
+
+In the following example: The dogs are created one at a time (line by line) using a line from the 1st paragraph and the whole last paragraph. Once the 3 dogs have been created they are put into an array (2nd paragraph). The 3rd paragraph uses a for loop to say for all the dogs in the array (one at a time in the specified order), call the method (bark) and return what each dog will say.
+
+``` java
+public class Application {
+    void run() {
+        Dog pia = makeDog("Pia", 4);
+        Dog bertie = makeDog("Bertie", 2);
+        Dog scout = makeDog("Scout", 62);
+
+        Dog[] dogs = new Dog[]{bertie, pia, scout};
+
+        for (Dog dog : dogs) { 
+            String dogsSay = dog.bark(5000);
+            System.out.println(dog.name + " says " + dogsSay);
+        }
+       
+    }
+
+    Dog makeDog(String dogName, int dogAge) {
+        Dog dog = new Dog();
+        dog.name = dogName;
+        dog.age = dogAge;
+        return dog;
+    }
+
+}
+```
