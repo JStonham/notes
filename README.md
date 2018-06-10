@@ -179,3 +179,19 @@ public class Main {
     }
 }
 ```
+
+## Enumeration (enum)
+
+A finite list of possible values. Similar to objects in that it can have fields and methods. It's not possible to use the syntax 'new' with enum. For each possible enum value, what Java does under the hood is assign a number (called an 'ordinal') to each. Java really only knows about this number, but the programmer may use an easy-to-read name instead.
+
+For example:
+
+``` java
+public enum FlingableObject {
+    BALL,
+    STICK,
+    FRISBEE,
+    TOY,
+    HOT_DOG
+}
+```
