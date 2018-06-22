@@ -335,4 +335,22 @@ public class Rabbit extends Pet {
         this.fluffDegree = fluffDegree;
     }
 }
-``
+```
+
+# Abstract Classes
+
+Some classes can be defined as abstract classes. This means that the class is too broad for simple defining characteristics.
+
+Of the following classes: Animal, Pet, Dog, Cat and Rabbit, Animal and Pet should be considered abstract as there are many animals and many animals can be pets.
+
+In order to define a class as abstract simply use the abstract keyword before defining the class.
+
+``` java
+public abstract class Animal {
+}
+```
+
+``` java
+public abstract class Pet extends Animal {
+}
+```
