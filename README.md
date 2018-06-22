@@ -257,3 +257,42 @@ public class Application {
 
 }
 ```
+
+# Encapsulation
+
+Encapsulation in java allows you to hide certain variables from other classes (to prevent unwanted modification). These variables can only be accessed through defined set and get methods.
+
+There are four levels of class protection: public, protected, package-private (the default) and private. For all except package-private the keyword must be used at the start. For package-private no keyword is needed. For now just use public and private.
+
+In the following example, the public class Animal has private variables of age and limbsCount which can only be called by using the defined set methods (setLimbsCount and setAge) and the get methods (getLimbsCount and getAge).
+
+``` java
+public class Animal {
+    private int age;
+    private int limbsCount;
+
+    public int getLimbsCount() {
+        return limbsCount;
+    }
+
+    public void setLimbsCount(int limbsCount) {
+        this.limbsCount = limbsCount;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age >= 0) {
+            this.age = age;
+        }
+    }
+}
+```
+
+When using the set method, remember to include void after public to let java know you don't want to return any values.
+
+When using the get method, remember to list the data type after public, and tell java what to return.
+
+Note - the 'get' keyword is fine for get methods involving all data types except boolean. For boolean, instead of 'get' use 'is'.
