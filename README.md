@@ -262,7 +262,7 @@ public class Application {
 
 Encapsulation in Java allows you to hide certain fields from other classes. These fields can only be accessed through defined set and get methods.
 
-There are four levels of class protection: public, protected, package-private (the default) and private. For all except package-private the keyword must be used at the start. For package-private no keyword is needed. For now just use public and private.
+There are four levels of class protection: public, protected, package-private (the default) and private. For all except package-private the keyword must be used at the start. For package-private there is no keyword. For now just use public and private.
 
 In the following example, the public class Animal has private fields of age and limbsCount, which can only be called by using the defined set methods (setLimbsCount and setAge) and the get methods (getLimbsCount and getAge).
 
@@ -319,7 +319,7 @@ public class Pet extends Animal {
 }
 ```
 
-The following class Rabbit is a sub class of Pet. It inherits name from Pet and age and limbsCount from Pet's super class Animal.
+The following class Rabbit is a sub class of Pet. It inherits name from Pet, and age and limbsCount from Pet's super class Animal.
 
 Rabbit also has a field of fluffDegree, which Pet and Animal do not have.
 
@@ -333,6 +333,48 @@ public class Rabbit extends Pet {
 
     public void setFluffDegree(String fluffDegree) {
         this.fluffDegree = fluffDegree;
+    }
+}
+```
+
+# Using Set-ers and Get-ers
+
+The following code will make a new cat and a new rabbit with defined name, age, limbsCount and fluffDegree for the Rabbit only (The Cat class doesn't include or inherit this field).
+
+We could use the Animal class to get the age and limbsCount of the Cat and Rabbit, but to get the name for both as well we need to use the Pet class.
+
+``` java
+public class Application {
+
+    void run() {
+        Pet tom = makeCat();
+        Pet bugs = makeRabbit();
+
+        Pet[] pets = {tom, bugs};
+
+        for (Pet pet : pets) {
+            System.out.println(pet.getAge());
+            System.out.println(pet.getLimbsCount());
+            System.out.println(pet.getName());
+        }
+    }
+
+    private Rabbit makeRabbit() {
+        Rabbit rabbit = new Rabbit();
+        rabbit.setName("Bugs");
+        rabbit.setAge(6);
+        rabbit.setLimbsCount(3);
+        rabbit.setFluffDegree("quite fluffy");
+        return rabbit;
+    }
+
+
+    private Cat makeCat() {
+        Cat cat = new Cat();
+        cat.setName("Tom");
+        cat.setAge(5);
+        cat.setLimbsCount(4);
+        return cat;
     }
 }
 ```
