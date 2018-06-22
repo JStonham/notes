@@ -226,9 +226,9 @@ public class Application {
   }
 ```
 
-# Using a for loop
+# Using a For Loop
 
-The for loop below effectively says: For all dogs, create a variable dog of type Dog, call the method (bark) and return what the dogs will say.
+The For Loop below effectively says: For all dogs, create a variable dog of type Dog, call the method (bark) and return what the dogs will say.
 
 In the following example: The dogs are created one at a time (line by line) using a line from the 1st paragraph and the whole last paragraph. Once the 3 dogs have been created they are put into an array (2nd paragraph). The 3rd paragraph uses a for loop to say for all the dogs in the array (one at a time in the specified order), call the method (bark) and return what each dog will say.
 
@@ -260,11 +260,11 @@ public class Application {
 
 # Encapsulation
 
-Encapsulation in java allows you to hide certain variables from other classes (to prevent unwanted modification). These variables can only be accessed through defined set and get methods.
+Encapsulation in Java allows you to hide certain fields from other classes. These fields can only be accessed through defined set and get methods.
 
 There are four levels of class protection: public, protected, package-private (the default) and private. For all except package-private the keyword must be used at the start. For package-private no keyword is needed. For now just use public and private.
 
-In the following example, the public class Animal has private variables of age and limbsCount which can only be called by using the defined set methods (setLimbsCount and setAge) and the get methods (getLimbsCount and getAge).
+In the following example, the public class Animal has private fields of age and limbsCount, which can only be called by using the defined set methods (setLimbsCount and setAge) and the get methods (getLimbsCount and getAge).
 
 ``` java
 public class Animal {
@@ -291,8 +291,48 @@ public class Animal {
 }
 ```
 
-When using the set method, remember to include void after public to let java know you don't want to return any values.
+When using the set method, remember to include void after public to let Java know you don't want to return any values. Also, to allow you to use the same word multiple times, write 'this.' before the field name to let Java know which word in the method links to the field.
 
-When using the get method, remember to list the data type after public, and tell java what to return.
+When using the get method, remember to list the data type after public, and tell Java what to return.
 
 Note - the 'get' keyword is fine for get methods involving all data types except boolean. For boolean, instead of 'get' use 'is'.
+
+# Inheritance
+
+Classes can inherit fields and methods from another, super, class. In the case of Animal there can be many animals so Animal is a super class. The sub classes for Animal could be Dog, Cat and Rabbit. As these might all have similar features that other animals may not have, they can be included in a super class Pet, which would be a sub class of Animal.
+
+In order to show that one class is a sub class of another, you should use the following syntax after public/private class: "sub class name" + extends + "super class name".
+
+The following sub class Pet inherits age and limbsCount from its super class Animal, and also has a field called name.
+
+``` java
+public class Pet extends Animal {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
+
+The following class Rabbit is a sub class of Pet. It inherits name from Pet and age and limbsCount from Pet's super class Animal.
+
+Rabbit also has a field of fluffDegree, which Pet and Animal do not have.
+
+``` java
+public class Rabbit extends Pet {
+    private String fluffDegree;
+
+    public String getFluffDegree() {
+        return fluffDegree;
+    }
+
+    public void setFluffDegree(String fluffDegree) {
+        this.fluffDegree = fluffDegree;
+    }
+}
+``
