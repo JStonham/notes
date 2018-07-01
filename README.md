@@ -403,3 +403,17 @@ Alt + Enter will help you out with almost anything!
 To create a main method signature use shortcut 'psvm'.
 If you need to rename a class or a method - Refactor, Rename (Shift + F6).
 Ctrl + Alt + l sorts out dodgy formatting e.g. lots of random spaces.
+
+# Polymorphism
+
+Polymorphism decouples a method's contract (method signature) from its implementation. (It tells you what to do but not how to do it).
+
+If we think of the class Shape, it would be an abstract class as there are many shapes. We want to calculate the circumference of these shapes. The problem is that the circumference for different shapes is calculated in different ways. Rather than putting all of the different methods into the Shape class, we put a Constructor to say what we want, and force the problem of the method down into the sub classes.
+
+A constructors looks like a method, but it cannot have a return type. It is used for setting up the inital state of an object. The name of a constructor is always the same as the name of the class. When writing the syntax for a class/object it is fields, then constructors, then methods.
+
+``` java
+public abstract class Shape {
+    public abstract double circumference();
+}
+```
