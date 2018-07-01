@@ -381,7 +381,7 @@ public class Application {
 
 # Abstract Classes
 
-Some classes can be defined as abstract classes. This means that the class is too broad for simple defining characteristics.
+Some classes can be defined as abstract classes. This means that the class is too broad for simple defining characteristics. The primary use of an abstract class is to define and show only the relevant details of the class/object it creates and hide the irrelevant details from future users.
 
 Of the following classes: Animal, Pet, Dog, Cat and Rabbit, Animal and Pet should be considered abstract as there are many animals and many animals can be pets.
 
@@ -406,7 +406,7 @@ Ctrl + Alt + l sorts out dodgy formatting e.g. lots of random spaces.
 
 # Polymorphism
 
-Polymorphism decouples a method's contract (method signature) from its implementation. (It tells you what to do but not how to do it).
+Polymorphism is the capability of a method to do different things based on the object that it is acting upon. It decouples a method's contract (method signature) from its implementation. (It stipulates what should be done, but allows for different implementations or calculations).
 
 If we think of the class Shape, it would be an abstract class as there are many shapes. We want to calculate the circumference of these shapes. The problem is that the circumference for different shapes is calculated in different ways. Rather than putting all of the different methods into the Shape class, we put a Constructor to say what we want, and force the problem of the method down into the sub classes.
 
@@ -521,5 +521,19 @@ public interface Shape {
 
 Sub classes become implementations so change 'extends' to 'implements'.
 
+``` java
 public class Rectangle implements Shape {
 }
+```
+
+# Differences between Abstract Classes and Interfaces in Java
+
+Both Abstract Classes and Interfaces are used for varying degrees of abstraction (defining relevant/irrelevant details and showing/hiding them from users).
+Abstract Classes are used for partial abstraction whereas Interfaces are used for full abstraction.
+As Abstract Classes are used for partial abstraction, they can have both abstract and concrete methods. Since Interfaces are used for full abstraction, they can only have abstract methods.
+In an Abstract Class, the 'abstract' keyword is mandatory to declare a method as abstract. In an Interface, the 'abstract' keyword is optional as all Interface methods are abstract anyway.
+An Abstract Class can have public and private abstract methods whereas an Interface can only have public abstract methods.
+
+Perhaps the biggest differences are:
+1. An Abstract Class can extend only one class at a time whereas an Interface can extend multiple interfaces at the same time.
+2. An Abstract Class can extend a concrete (regular) class or an abstract class, and it can also implement an interface. (It can only do 1 of these 3 things at once!). An interface can only extend another interface.
