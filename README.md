@@ -504,3 +504,22 @@ public class Main {
 ```
 
 The method circumference is called for all shapes in shape, and returns 3 values based on what height/width/radius has been selected and how the circumference of the individual shapes is calculated. 
+
+# Interfaces
+
+To change an abstract class to an interface remove 'abstract' from class and methods and change 'class' to 'interface'. Public can be removed from methods as all interface methods are implicitly public.
+
+### Shape Interface
+
+``` java
+public interface Shape {
+    double circumference();
+}
+```
+
+### Rectangle implementation of Shape Interface
+
+Sub classes become implementations so change 'extends' to 'implements'.
+
+public class Rectangle implements Shape {
+}
