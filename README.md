@@ -417,3 +417,90 @@ public abstract class Shape {
     public abstract double circumference();
 }
 ```
+
+We then create our Shape sub classes of Circle, RightAngleTriangle and Rectangle, each with their own methods for calculating their circumference.
+
+### Circle
+
+``` java
+public class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        if (radius >= 0) {
+            this.radius = radius;
+        } else {
+            System.out.println("ERROR: Radius needs to be a non-negative value.");
+        }
+    }
+
+    public double circumference() {
+        return 2*radius*Math.PI;
+    }
+}
+```
+
+This method includes a check that the radius entered is a non-negative value i.e. 0 or positive.
+
+### RightAngleTriangle
+
+``` java
+public class RightAngleTriangle extends Shape {
+    private double height;
+    private double width;
+
+    public RightAngleTriangle(double height, double width) {
+        this.height = height;
+        this.width = width;
+    }
+
+    public double circumference() {
+        return height + width + hypotenuse();
+    }
+
+    private double hypotenuse() {
+        return Math.sqrt(height * height + width * width);
+    }
+}
+```
+
+### Rectangle
+
+``` java
+public class Rectangle extends Shape {
+    private double height;
+    private double width;
+
+    public Rectangle(double height, double width) {
+        this.height = height;
+        this.width = width;
+    }
+
+
+    public double circumference() {
+        return 2 * height + 2 * width;
+    }
+}
+```
+
+### Calling the method of Circumference
+
+We can then call the method of circumference on the abstract class of Shape and its sub classes in the Main application.
+
+``` java
+public class Main {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5);
+        Shape triangle = new RightAngleTriangle(3, 4);
+        Shape rectangle = new Rectangle(3, 4);
+
+        Shape[] shapes = {circle, triangle, rectangle};
+
+        for (Shape shape : shapes) {
+            System.out.println(shape.circumference());
+        }
+    }
+}
+```
+
+The method circumference is called for all shapes in shape, and returns 3 values based on what height/width/radius has been selected and how the circumference of the individual shapes is calculated. 
