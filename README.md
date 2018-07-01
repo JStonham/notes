@@ -396,3 +396,10 @@ public abstract class Animal {
 public abstract class Pet extends Animal {
 }
 ```
+
+# Useful Windows Keyboard Shortcuts
+
+Alt + Enter will help you out with almost anything!
+To create a main method signature use shortcut 'psvm'.
+If you need to rename a class or a method - Refactor, Rename (Shift + F6).
+Ctrl + Alt + l sorts out dodgy formatting e.g. lots of random spaces.
