@@ -542,4 +542,4 @@ When we talk about abstract classes we are defining characteristics of an object
 
 When we talk about an interface and define capabilities that we promise to provide, we are talking about establishing a contract about what the object can do.
 
-For example, the following can all be pets: cat, dog, snake, spider. However, you can only really pet a cat or a dog.
+For example, the following can all be pets: cat, dog, snake, spider. However, you can only really pet a cat or a dog. In this case we would make Pet and abstract class where the pets can inherit the characteristics, and IsPetable as an interface, which the cat and the dog would implement.
