@@ -537,3 +537,9 @@ An Abstract Class can have public and private abstract methods whereas an Interf
 Perhaps the biggest differences are:
 1. An Abstract Class can extend only one class at a time whereas an Interface can extend multiple interfaces at the same time.
 2. An Abstract Class can extend a concrete (regular) class or an abstract class, and it can also implement an interface. (It can only do 1 of these 3 things at once!). An interface can only extend another interface.
+
+When we talk about abstract classes we are defining characteristics of an object type; specifying what an object is.
+
+When we talk about an interface and define capabilities that we promise to provide, we are talking about establishing a contract about what the object can do.
+
+For example, the following can all be pets: cat, dog, snake, spider. However, you can only really pet a cat or a dog.
