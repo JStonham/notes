@@ -546,18 +546,28 @@ For example, the following can all be animals: cat, dog, hippo, meerkat. However
 
 # Git Bash
 
-Git is a command line application adjacent to code. It excels as a Version Control System. There are some other systems you can use, but Git is the best. There are many Graphical User Interfaces (GUIs) for Git e.g. IntelliJ.
+Git is a command line application adjacent to code. It excels as a Version Control System. There are some other systems you can use, but Git is the best. There are many Graphical User Interfaces (GUIs) for Git e.g. IntelliJ. Bash (Bourne Again SHell) is a program that facilitates the running of applications.
+
+Git has directories and repositories. The directories are the structure of files and folders and the repositories track changes and form the basis of the version control system.
 
 ## Useful Git Commands
 
-cd  (change directory)
-ls  (list contents of current directory)
-cp  (copy file)
-mv  (move and rename file or directory)
-/  (the highest directory you can navigate to)
-~  (the home directory)
-.  (the current directory)
-..  (the directory above the current one)
--  (the previous directory you navigated to)
-rm  (remove file - be VERY careful with this one!)
+Some Git commands need a 'Git' in front of them as they are Git specific.
+
+cd  (change directory)\
+ls  (list contents of current directory)\
+git status  (checking the state of a repository)\ 
+git init  (creates an empty repository within the current directory)\
+git add  (adds files where the names succeed the key word)\
+git commit  (commits the files to the repository)\
+nano  (text editor)\
+cat  (concatenates/combines - shows you the file)\
+cp  (copy file)\
+mv  (move and rename file or directory)\
+/  (the highest directory you can navigate to)\
+~  (the home directory)\
+.  (the current directory)\
+..  (the directory above the current one)\
+\-  (the previous directory you navigated to)\
+rm  (remove file - be VERY careful with this one!)\
 
