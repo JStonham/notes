@@ -556,10 +556,11 @@ Some Git commands need a 'Git' in front of them as they are Git specific.
 
 cd  (change directory)\
 ls  (list contents of current directory)\
-git status  (checking the state of a repository)\ 
+git status  (checking the state of a repository)\
 git init  (creates an empty repository within the current directory)\
 git add  (adds files where the names succeed the key word)\
 git commit  (commits the files to the repository)\
+\-m  (allows you to add a comment within "" to the commit)\
 nano  (text editor)\
 cat  (concatenates/combines - shows you the file)\
 cp  (copy file)\
@@ -569,5 +570,5 @@ mv  (move and rename file or directory)\
 .  (the current directory)\
 ..  (the directory above the current one)\
 \-  (the previous directory you navigated to)\
-rm  (remove file - be VERY careful with this one!)\
+rm  (remove file - be VERY careful with this one!)
 
