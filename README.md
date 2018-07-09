@@ -528,11 +528,11 @@ public class Rectangle implements Shape {
 
 # Differences between Abstract Classes and Interfaces in Java
 
-Both Abstract Classes and Interfaces are used for varying degrees of abstraction (defining relevant/irrelevant details and showing/hiding them from users).
-Abstract Classes are used for partial abstraction whereas Interfaces are used for full abstraction.
-As Abstract Classes are used for partial abstraction, they can have both abstract and concrete methods. Since Interfaces are used for full abstraction, they can only have abstract methods.
-In an Abstract Class, the 'abstract' keyword is mandatory to declare a method as abstract. In an Interface, the 'abstract' keyword is optional as all Interface methods are abstract anyway.
-An Abstract Class can have public and private abstract methods whereas an Interface can only have public abstract methods.
+- Both Abstract Classes and Interfaces are used for varying degrees of abstraction (defining relevant/irrelevant details and showing/hiding them from users).
+- Abstract Classes are used for partial abstraction whereas Interfaces are used for full abstraction.
+- As Abstract Classes are used for partial abstraction, they can have both abstract and concrete methods. Since Interfaces are used for full abstraction, they can only have abstract methods.
+- In an Abstract Class, the 'abstract' keyword is mandatory to declare a method as abstract. In an Interface, the 'abstract' keyword is optional as all Interface methods are abstract anyway.
+- An Abstract Class can have public and private abstract methods whereas an Interface can only have public abstract methods.
 
 Perhaps the biggest differences are:
 1. An Abstract Class can extend only one class at a time whereas an Interface can extend multiple interfaces at the same time.
@@ -542,4 +542,4 @@ When we talk about abstract classes we are defining characteristics of an object
 
 When we talk about an interface and define capabilities that we promise to provide, we are talking about establishing a contract about what the object can do.
 
-For example, the following can all be pets: cat, dog, snake, spider. However, you can only really pet a cat or a dog. In this case we would make Pet and abstract class where the pets can inherit the characteristics, and IsPetable as an interface, which the cat and the dog would implement.
+For example, the following can all be animals: cat, dog, hippo, meerkat. However, only a cat or dog would lick people. In this case we could make Animal an abstract class where the animals can inherit certain characteristics, and LicksPeople as an interface, which the cat and the dog would implement.
