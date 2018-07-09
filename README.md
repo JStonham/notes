@@ -554,6 +554,7 @@ Git has directories and repositories. The directories are the structure of files
 
 Some Git commands need a 'Git' in front of them as they are Git specific.
 
+history  (shows the command line history)\
 cd  (change directory)\
 ls  (list contents of current directory)\
 git status  (checking the state of a repository)\
