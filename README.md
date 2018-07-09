@@ -543,3 +543,21 @@ When we talk about abstract classes we are defining characteristics of an object
 When we talk about an interface and define capabilities that we promise to provide, we are talking about establishing a contract about what the object can do.
 
 For example, the following can all be animals: cat, dog, hippo, meerkat. However, only a cat or dog would lick people. In this case we could make Animal an abstract class where the animals can inherit certain characteristics, and LicksPeople as an interface, which the cat and the dog would implement.
+
+# Git Bash
+
+Git is a command line application adjacent to code. It excels as a Version Control System. There are some other systems you can use, but Git is the best. There are many Graphical User Interfaces (GUIs) for Git e.g. IntelliJ.
+
+## Useful Git Commands
+
+cd  (change directory)
+ls  (list contents of current directory)
+cp  (copy file)
+mv  (move and rename file or directory)
+/  (the highest directory you can navigate to)
+~  (the home directory)
+.  (the current directory)
+..  (the directory above the current one)
+-  (the previous directory you navigated to)
+rm  (remove file - be VERY careful with this one!)
+
