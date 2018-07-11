@@ -573,3 +573,23 @@ mv  (move and rename file or directory)\
 \-  (the previous directory you navigated to)\
 rm  (remove file - be VERY careful with this one!)
 
+## Git Repositories
+
+We create repositories in Git to initialise a version control system and allow many people to work on the same code.
+
+To create a repository, 'cd' to the directory you want to create the repository in.\
+Use 'ls' to see everything that the directory contains.\
+Create the repository using 'git init'.\
+Use 'git status' to check the status of the repository.\
+Use 'git add' followed by the full file names, or '.' for everything, to prepare files for adding to the repository.\
+Use 'git status' to check the status of the repository.\
+Use 'git commit' to commit (add) the files to the repository. Use '-m' followed by text in "" to add comments to the commit.\
+Comments are very good for explaining why you are doing things.\
+Use 'git status' to check the status of the repository.\
+If there are files you want to be ignored or you want to create a space for future files to ignore, type 'nano' followed by a file name to open the nano text editor and load a file. If no file is found nano will create one.\
+Use 'git status' to check the status of the repository.\
+Use 'git add' to prepare the to-be-ignored files for adding to the repository.\
+Use 'git status' to check the status of the repository.\
+Use 'git commit' to commit (add) the files to-be-ignored to the repository. Use '-m' followed by text in "" to add comments to the commit.\
+Use 'git status' to check the status of the repository.\
+When you are done, you should get the message 'working tree clean'.
