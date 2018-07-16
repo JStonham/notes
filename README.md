@@ -593,3 +593,14 @@ Use 'git status' to check the status of the repository.\
 Use 'git commit' to commit (add) the files to-be-ignored to the repository. Use '-m' followed by text in "" to add comments to the commit.\
 Use 'git status' to check the status of the repository.\
 When you are done, you should get the message 'working tree clean'.
+
+## Updating GitHub through Git Bash and Intellij
+
+- change directory into the directory you want to update.
+- clone the directory to your computer using 'git clone' followed by the full directory link (found using 'clone or download' on GitHub).
+- change directory into the new directory.
+- update the file using nano or vim in Git Bash or Intellij.
+- prepare the changes using 'git add' followed by file name or '.'.
+- commit the changes using 'git commit' and add a message using -m "[message text here]".
+- push the changes to the orignal branch using 'git push'.
+- add reviewer on GitHub.
