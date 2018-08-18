@@ -642,3 +642,33 @@ To simplify the user journey, break down the conditions into their simplest form
 1. The transaction reason will be formed of the following list of options for an expenditure: Gifts, rent, phone bill, electricity bill, water bill, council tax, money lent, clothes, toiletries, groceries, food & drink, commuting travel, holiday travel, gym.
 1. All money entered by the user into the purse will be in positive or non-negative values.
 1. The application will display credit and expenditure in positive or non-negative values.
+
+## A Plain Old Java Object (pojo) called Transaction
+
+Create a class called Transaction with private fields of different types and set-ers and get-ers.
+
+``` java
+public class Transaction {
+    private String type;
+    private String description;
+    private long money;
+     public void setType(String type) {
+        this.type = type;
+    }
+     public void setDescription(String description) {
+        this.description = description;
+    }
+     public void setMoney(long money) {
+        this.money = money;
+    }
+     public String getType() {
+        return type;
+    }
+     public String getDescription() {
+        return description;
+    }
+     public long getMoney() {
+        return money;
+    }
+}
+```
