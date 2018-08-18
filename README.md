@@ -672,3 +672,29 @@ public class Transaction {
     }
 }
 ```
+
+## Creating a Simple Successful Test
+
+
+The beginning of test driven development (tdd). Tests must be:
+- public
+- void
+- have no input arguments
+- begin with '@Test'
+
+```java
+public class Bank {
+}
+```
+
+There should be at least two classes. A main class and a test class.
+
+``` java
+import org.junit.Test;
+
+public class BankTest {
+    @Test
+    public void test() {
+    }
+}
+```
