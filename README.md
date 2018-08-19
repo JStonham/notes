@@ -679,17 +679,20 @@ The beginning of test driven development (tdd). Tests must be:
 - have no input arguments
 - begin with '@Test'
 
+There should be at least two classes. A main class and a test class.
+
 ```java
 public class Bank {
     private long balance;
      public long add(Transaction transaction) {
         balance = balance + transaction.getMoney();
+        balance += transaction.getMoney();
         return balance;
     }
 }
 ```
 
-There should be at least two classes. A main class and a test class.
+Since the updated balance will be the balance plus the result of the transaction, we can simplify the code in line 4 to be the '+=' in line 5 and get rid of line 4.
 
 ``` java
 import org.junit.Test;
@@ -708,10 +711,58 @@ public class BankTest {
         long balance = bank.add(makeTransaction(5));
         assertEquals(5, balance);
     }
+```
+
+    3 in 1 positive and negative test:
+    Look closely at what is expected in the assertEquals
+    after each new transaction is made.
+
+``` java
+    @Test
+    public void testTransaction() {
+        Transaction transaction1 = makeTransaction(10);
+        assertEquals(10, bank.add(transaction1));
+        Transaction transaction2 = makeTransaction(-8);
+        assertEquals(2, bank.add(transaction2));
+        Transaction transaction3 = makeTransaction(4);
+        assertEquals(6, bank.add(transaction3));
+    }
      private Transaction makeTransaction(long money) {
         Transaction transaction = new Transaction();
         transaction.setMoney(money);
         return transaction;
     }
  }
+```
+
+## Transactions
+
+Looking back at the requirements for budjen:
+"Each transaction will include a transaction type,
+a transation reason and a number of money in pounds sterling."
+
+``` java
+public class Transaction {
+    private String type;
+    private String description;
+    private long money;
+     public void setType(String type) {
+        this.type = type;
+    }
+     public void setDescription(String description) {
+        this.description = description;
+    }
+     public void setMoney(long money) {
+        this.money = money;
+    }
+     public String getType() {
+        return type;
+    }
+     public String getDescription() {
+        return description;
+    }
+     public long getMoney() {
+        return money;
+    }
+}
 ```
