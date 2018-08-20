@@ -766,3 +766,247 @@ public class Transaction {
     }
 }
 ```
+
+## Test Driven Development (tdd)
+
+tdd rules:
+1. RED. Write as little test code as possible to make your production code fail.
+1. GREEN. Write as little production code as possible to make your test pass.
+1. REFACTOR. Clean up the code. (Not allowed to change the behaviour of the production code).
+
+The classes Bank and BankTest now become:
+
+``` java
+public class Bank {
+    private long balance = 0;
+     public long getBalance() {
+        return balance;
+    }
+     public void addTransaction(Transaction transaction) {
+        balance += transaction.getMoney();
+    }
+}
+
+public class BankTest {
+    public static final long BIG_NUMBER = 64000000000l;
+    private Bank bank = new Bank();
+
+     @Test
+     public void hasZeroBalanceByDefault() {
+        assertEquals(0, bank.getBalance());
+    }
+     @Test
+     public void canHandleMultipleTransactions() {
+        bank.addTransaction(makeTransaction(128));
+        bank.addTransaction(makeTransaction(-256));
+        bank.addTransaction(makeTransaction(64));
+        assertEquals(-64, bank.getBalance());
+    }
+     @Test
+     public void canHandleVeryLargeAmountsOfMoney() {
+        bank.addTransaction(makeTransaction(BIG_NUMBER));
+        assertEquals(BIG_NUMBER, bank.getBalance());
+    }
+     private Transaction makeTransaction(long money) {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(money);
+        return transaction;
+    }
+}
+```
+
+The class Transaction needs a TransactionTest class:
+
+```java
+import org.junit.Test;
+import static org.junit.Assert.*;
+public class TransactionTest {
+     @Test
+    public void givenNoData_returnsNoDataMessage() {
+        String summary = new Transaction().getSummary();
+        assertEquals("No data.", summary);
+    }
+     @Test
+    public void givenMoney_returnsMonetaryDescription() {
+        String summary = makeTransaction().getSummary();
+        assertEquals("You have £10", summary);
+    }
+    @Test
+    public void givenPositiveMoney_returnsMonetaryValue() {
+        long money = makeTransaction().getMoney();
+        assertEquals(10, money);
+    }
+     private Transaction makeTransaction() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(10);
+        return transaction;
+    }
+}
+```
+
+To make 2 of these tests pass, we need to add a method to the Transaction class:
+
+``` java
+    public String getSummary() {
+        if (money == 0) {
+            return "No data.";
+        }
+        return "You have £10";
+    }
+```
+
+So that was positive money, but how about negative money?
+
+``` java
+    @Test
+    public void givenNegativeMoney_returnsNegativeMonetaryValue() {
+        long money = makeNegativeTransaction().getMoney();
+        assertEquals(-20, money);
+    }
+     @Test
+    public void givenNegativeMoney_returnsMonetaryDescription() {
+        String summary = makeNegativeTransaction().getSummary();
+        assertEquals("You have spent £20", summary);
+    }
+     private Transaction makeNegativeTransaction() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(-20);
+        return transaction;
+    }
+```
+
+Which means we need to add lines 5-7 of the following to Transaction:
+
+``` java
+    public String getSummary() {
+        if (money == 0) {
+            return "No data.";
+        }
+        if (money <0) {
+            return "You have spent £20";
+        }
+        return "You have £10";
+    }
+```
+
+The amount of money I have spent or I have can be refactored:
+
+``` java
+    public String getSummary() {
+         if (money == 0) {
+            return "No data.";
+        }
+        if (money <0) {
+            return "You have spent £" + (money * -1);
+        }
+        return "You have £" + money;
+    }
+```
+
+Now, what about zero money?
+
+``` java
+    @Test
+    public void givenZeroMoney_returnsZeroMonetaryValue() {
+        long money = new Transaction().getMoney();
+        assertEquals(0, money);
+    }
+     @Test
+    public void givenZeroMoney_returnsMonetaryDescription() {
+        String summary = new Transaction().getSummary();
+        assertEquals("No data.", summary);
+    }
+```
+
+Tests and method for Transaction description:
+
+``` java
+    @Test
+    public void givenDescription_returnsDescription() {
+        String description = makeDescription().getDescription();
+        assertEquals("Rent",description);
+    }
+    @Test
+    public void givenNullDescription_returnsNullDescription() {
+        String description = new Transaction().getDescription();
+        assertEquals(null,description);
+    }
+    @Test
+    public void givenEmptyDescription_returnsDescription() {
+        String description = makeEmptyDescription().getDescription();
+        assertEquals("",description);
+    }
+     private Transaction makeDescription() {
+        Transaction transaction = new Transaction();
+        transaction.setDescription("Rent");
+        return transaction;
+    }
+    private Transaction makeEmptyDescription() {
+        Transaction transaction = new Transaction();
+        transaction.setDescription("");
+        return transaction;
+    }
+```
+
+The 3rd test above is a dangerous test. Essentially it is allowing an empty description to be set (which we don't want to allow).
+
+Tests on Transaction Date:
+
+``` java
+import java.util.Date;
+    @Test
+    public void givenDate_returnDate() {
+        Date date = new Date();
+        Transaction transaction  = new Transaction();
+        transaction.setDate(date);
+        assertEquals(date, transaction.getDate());
+    }
+     @Test
+    public void givenNullDate_returnDateToday() {
+        Date today = new Date();
+        Transaction transaction = new Transaction();
+        transaction.setDate(null);
+        assertEquals(today, transaction.getDate());
+    }
+```
+
+And of course we need to modify the Transaction class to make these tests pass by adding a date field and set-ers and get-ers:
+
+``` java
+import java.util.Date;
+private Date date;
+public void setDate(Date date) {
+        this.date = date;
+    }
+public Date getDate() {
+        return date;
+    }
+```
+
+We can change this code so that if the date is null the date returned will be today...
+
+``` java
+public Date getDate() {
+        if (date == null) {
+            return new Date();
+        }
+            return date;
+    }
+```
+
+The problem with this code is that if the transaction date is null, by the time we get the date it might be slightly different to the date that was set (e.g. 1 second out). This means we need to set the date in the setDate method rather than the getDate method:
+
+``` java
+public void setDate(Date date) {
+        this.date = date;
+        if (date == null) {
+            this.date = new Date();
+        }
+        else {
+            this.date = date;
+        }
+    }
+public Date getDate() {
+        return date;
+    }
+```
