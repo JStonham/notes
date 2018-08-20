@@ -929,7 +929,7 @@ Tests and method for Transaction description:
     @Test
     public void givenNullDescription_returnsNullDescription() {
         String description = new Transaction().getDescription();
-        assertEquals(null,description);
+        assertNull(description);
     }
     @Test
     public void givenEmptyDescription_returnsDescription() {
@@ -1009,4 +1009,159 @@ public void setDate(Date date) {
 public Date getDate() {
         return date;
     }
+```
+
+## TDD with a new money format
+
+So far we have been thinking about money in terms of whole pounds... but what do we need to do if we want to think about money in terms of pence?
+
+We can modify our existing Transaction Tests to include pence:
+
+``` java
+@Test
+    public void givenMoney_returnsMonetaryDescription() {
+        String summary = makeTransaction().getSummary();
+        assertEquals("You have £10", summary);
+        assertEquals("Your account has been credited with £10.00", summary);
+    }
+     @Test
+    public void givenPositiveMoney_returnsMonetaryValue() {
+        long money = makeTransaction().getMoney();
+        assertEquals(10, money);
+        assertEquals(1000, money);
+    }
+     private Transaction makeTransaction() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(10);
+        transaction.setMoney(1000);
+        return transaction;
+    }
+     @Test
+    public void givenNegativeMoney_returnsNegativeMonetaryValue() {
+        long money = makeNegativeTransaction().getMoney();
+        assertEquals(-20, money);
+        assertEquals(-2000 , money);
+    }
+     @Test
+    public void givenNegativeMoney_returnsMonetaryDescription() {
+        String summary = makeNegativeTransaction().getSummary();
+        assertEquals("You have spent £20", summary);
+        assertEquals("You have spent £20.00", summary);
+    }
+     private Transaction makeNegativeTransaction() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(-20);
+        transaction.setMoney(-2000);
+        return transaction;
+    }
+     @Test
+    public void givenNegativeMoney_returnsMonetaryDescription2() {
+        String summary = makeNegativeTransaction2().getSummary();
+        assertEquals("You have spent £20.01", summary);
+    }
+     private Transaction makeNegativeTransaction2() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(-2001);
+        return transaction;
+    }
+```
+
+Simply adding pence as 00 is fine when we are still working in whole pounds, but to get the actual pence (the remainder of a whole pound) we need to do:
+- a % b = c
+
+A big number divided by another number will give a number of whole values and a remainder. It is the remainder we are interested in.
+
+For example, in 15 % 10 = 5, 10 goes into 15 once, with 5 as the remainder.
+
+Some other examples:
+- 25 % 10 = 5
+- 13 % 6 = 1
+- 64 % 255 = 64
+- 146 % 12 = 2
+
+We can create a class called Currency to give us the pence:
+
+``` java
+public class Currency {
+    public String formatPounds(long i) {
+        if (i == 0) {
+            return "0";
+        }
+        long remainder = i % 100;
+        String pence = remainder < 10 ? "0" + remainder : "" + remainder;
+        return "£" + (i / 100) + "." + pence;
+    }
+}
+```
+
+The code 'remainder < 10 ? "0" + remainder : "" + remainder' works as an if-else statement. i.e. If the remainder is less than 10, then 0 + remainder, else "" + remainder.
+
+With the Currency class, we need a Currency Test class:
+
+``` java
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+public class CurrencyTest {
+     @Test
+    public void givenZero_givesZero() {
+        runTest("0", 0);
+    }
+     @Test
+    public void given5Pounds_gives5Pounds() {
+        runTest("£5.00", 500);
+    }
+     @Test
+    public void given42Pence_gives42Pence() {
+        runTest("£0.42", 42);
+    }
+     private void runTest(String s, int i) {
+        assertEquals(s, new Currency().formatPounds(i));
+    }
+ }
+```
+
+We can also modify the getSummary method in the Transaction class to tell us exactly how much money was involved in the transaction.
+
+``` java
+public String getSummary() {
+         if (money == 0) {
+            return "No data.";
+        }
+        if (money <0) {
+            return "You have spent " + new Currency().formatPounds(-money);
+        }
+        return "Your account has been credited with " + new Currency().formatPounds(money);
+    }
+```
+
+Always remember to REFACTOR!! There could be unused imports or multiple assertions that could be put into the same Test.
+
+This code
+
+``` java
+private Date date;
+
+public void setDate(Date date) {
+        if (date == null) {
+            this.date = new Date();
+        }
+        else {
+            this.date = date;
+        }
+}
+```
+
+could be changed to
+
+``` java
+private Date date = new Date();
+
+public void setDate(Date date) {
+        if (date != null) {
+            this.date = date;
+        }
+        else {
+            this.date = date;
+        }
+}
 ```
