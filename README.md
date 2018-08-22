@@ -1165,3 +1165,78 @@ public void setDate(Date date) {
         }
 }
 ```
+
+## Exceptions
+
+An exception is a disruption to the execution of a programme. There are a few reasons why an exception can occur, including:
+- Data requested is out of range (e.g. Data held is 1-5 and I ask for record 8).
+- File cannot be found.
+- Network connection was interrupted.
+
+There are two types of exceptions:
+1. Checked Exceptions
+1. Unchecked Exceptions
+
+Checked exceptions have to be handled when a programme is executed. The programmer is forced to build in a way of handling these exceptions.
+
+Unchecked exceptions do not have to be handled when a programme is executed. It is up to the programmer to handle them.
+
+Java documents states: "If a client can reasonably be expected to recover from an exception, make it a checked exception. If a client cannot do anything to recover from the exception, make it an unchecked exception".
+
+In Java, the Exception class is checked, but the RuntimeException class is unchecked.
+
+Exceptions should be handled to enable the safe execution of a programme. Ideally exceptions need to be handled as closely as possible to make the execution more performant.
+
+The way we handle exceptions is using the try/catch syntax.
+
+We 'try' the method that will throw an exception and we 'catch' the result of that exception.
+
+By catching the exception we allow the programme to be executed, although instead of the expected response the user will be shown an error message.
+
+``` java
+import org.junit.Test;
+ public class ExceptionPracticeTest {
+     @Test
+    public void exceptionTest() {
+        a();
+    }
+     private void a() {
+        b();
+    }
+     private void b() {
+        c();
+    }
+     private void c() {
+        d();
+    }
+     private void d() {
+        e();
+    }
+     private void e() {
+        try {
+            f();
+        } catch (JenException re) {
+            String bob = re.getBob();
+            System.out.println(bob.equals("agergaerg"));
+        }
+    }
+     private void f() {
+        g();
+    }
+     private void g() {
+        h();
+    }
+     private void h() throws JenException {
+        throw new JenException("Doesn't matter");
+    }
+}
+ class JenException extends RuntimeException {
+    private String bob;
+     JenException(String message) {
+        super(message);
+    }
+     public String getBob() {
+        return bob;
+    }
+}
+```
