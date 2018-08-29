@@ -1240,3 +1240,12 @@ import org.junit.Test;
     }
 }
 ```
+
+## Creating an Alias
+
+To create an alias, we need to create and modify a file that will contain our alias.
+
+- Open text editor for file containg alias: nano ./.bashrc
+- Edit file: alias shortcut = "full command"
+- Write Out, Enter and Exit text editor.
+- Enable use of shortcut straight away: source ./.bashrc
