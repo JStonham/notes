@@ -1249,3 +1249,112 @@ To create an alias, we need to create and modify a file that will contain our al
 - Edit file: alias shortcut = "full command"
 - Write Out, Enter and Exit text editor.
 - Enable use of shortcut straight away: source ./.bashrc
+
+## Injected vs Hard-Coded Dependencies
+
+Injected Dependencies provide the variables that a class needs (its dependencies) by injecting them into the class's contructor, instead of the class having to construct them itself as Hard-Coded Dependencies.
+Dependency injection is a form of object delegation rather than object inheritance. i.e. it is in the form of an object has-a rather than an object is-a relationship. This can be especially useful when designing and testing an application.
+- Hard-Coded Dependencies are useful when your class depends on an aspect that is not going to change, e.g. it depends on a sorter that will always be needed to sort in the same way.
+- Injected Dependencies are useful if you know there is something you will always need, like data, but the data itself might change.
+
+## Generics
+
+Generics add stability to your code by making more of your bugs detectable at compile-time, rather than waiting for things to go wrong at run-time.
+
+They do this by providing type safety, that is, if you write code that expects to return an Integer and you mistakenly pass in a String, it might not be visible until the run-time error.
+
+With Generics, you can set the generic type to be a non-primative type e.g. Integer and then if you pass in a String you will get a compile-time error.
+
+The syntax for Generics is of a something, e.g. an animal shelter of dogs:
+```java
+AnimalShelter<Dog>
+```
+
+## Changing Arrays into Lists
+
+Arrays can be useful if you have a simple list of objects that will not change, but if you want more capabilities (e.g. to add or substract objects from the list) you will need to use a List.
+
+The syntax for creating an array is:
+``` java
+protection Type[] name() {
+    return new Type[] {
+        list of objects
+    }
+}
+```
+Example:
+```java
+public Transaction[] getTransactionData() {
+    return new Transaction[] {
+        credit("",money,date)
+        debit("",money,date)
+    }
+}
+```
+
+The syntax for creating a list is:
+```java
+protection List<Type> name() {
+    return Arrays.asList(
+        list of objects
+    )
+}
+```
+Example:
+```java
+public List<Transaction> getTransactionData() {
+    return Arrays.asList(
+        credit("",money,date)
+        debit("",money,date)
+    )
+}
+```
+As Array is a class, we can call a new instance of it. Since List is an interface, we have to call an array instance of a list in order to create a new instance.
+
+To test how many objects are in an array or a list, you use length for array and size for list. Example:
+
+Array
+```java
+assertEquals(16, transactions.length);
+```
+List
+```java
+assertEquals(16, transactions.size());
+```
+You can also do:
+
+Array
+```java
+assertArrayEquals(expected, actual);
+```
+List
+```java
+assertEquals(actual.size(), expected.size());
+for (int i = 0; i < actual.size(); i++) {
+    assertEquals(expected.get(i), actual.get(i));
+}
+```
+Java has a built in function for testing how many objects are in an array, but not how many are in a list.
+
+The code above for testing the size of a list states that for every object in the list, from 0 to less than the size of the list, check expected against actual and then move to the next object in the list.
+
+## Packages
+
+Packages allow users to organise different sets of classes and interfaces into related groups. They are similar to folders in a file structure, with classes/interfaces being the files.
+
+Packages are also useful in terms of expanding the priviledges of certain classes to view other non-super or non-sub classes.
+
+There are four levels of protection for fields, methods, classes etc:
+- public (available to all other classes)
+- protected (available to the class, its subclasses and any classes in the same package)
+- package private (default, available to the class and any classes in the same package)
+- private (only available to that class)
+
+Access Levels
+
+|   Modifier  | Class | Package | Subclass | World |
+| ----------- | ----- | ------- | -------- | ----- |
+| public      |   Y   |    Y 	|     Y    |   Y   |
+| protected   |   Y   |    Y 	|     Y    |   N   |
+| no modifier |   Y   |    Y 	|     N    |   N   |
+| private     |   Y   |    N 	|     N    |   N   |
