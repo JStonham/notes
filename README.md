@@ -206,7 +206,7 @@ public class Main {
 
 # Enumerations (`enum`)
 
-A finite list of possible values. Similar to objects in that it can have fields and methods. It's not possible to use the syntax 'new' with enum, as all possible instances are defined up-front by definition. For each possible enum value, what Java does under the hood is assign a number (called an 'ordinal') to each. Java really only knows about this number, but the programr may use an easy-to-read name instead.
+A finite list of possible values. Similar to objects in that it can have fields and methods. It's not possible to use the syntax 'new' with enum, as all possible instances are defined up-front by definition. For each possible enum value, what Java does under the hood is assign a number (called an 'ordinal') to each. Java really only knows about this number, but the programmer may use an easy-to-read name instead.
 
 For example:
 
@@ -581,7 +581,7 @@ For example, the following can all be animals: cat, dog, hippo, meerkat. However
 
 # Git Bash
 
-Git is an application on your computer. It does not come with a pretty interface by default, so you will have to use the command line to use it. It is an application adjacent to code - I.e. it is not directly related to programming, but there are very few professional programrs who don't use it. It excels as a 'Version Control System'. There are some other systems you can use, but Git is the best and is dominating in terms of popularity. There are many Graphical User Interfaces (GUIs) for Git e.g. IntelliJ. When you install Git on a Windows computer you generally also get a program called 'Git Bash'. Bash (Bourne Again SHell) is a program that facilitates the running of command line applications.
+Git is an application on your computer. It does not come with a pretty interface by default, so you will have to use the command line to use it. It is an application adjacent to code - I.e. it is not directly related to programming, but there are very few professional programmers who don't use it. It excels as a 'Version Control System'. There are some other systems you can use, but Git is the best and is dominating in terms of popularity. There are many Graphical User Interfaces (GUIs) for Git e.g. IntelliJ. When you install Git on a Windows computer you generally also get a program called 'Git Bash'. Bash (Bourne Again SHell) is a program that facilitates the running of command line applications.
 
 Your filesystem comprises directories (folders) and files. That's just about it. Git the notion of 'repositories'. Repositories are directories on steroids. Repositories are directories where git has been initialised, and starts tracking changes to the files inside it. This forms the basis of the version control system.
 
@@ -623,7 +623,7 @@ We create repositories in Git to initialise a version control system and track t
 
 1. To create a repository, `cd` to the directory you want to create the repository in.
 1. Use `ls` to see everything that the directory contains.
-1. 1. Create the repository using `git init`.
+1. Create the repository using `git init`.
 1. Use `git status` to check the status of the repository.
 1. Use `git add` followed by the full file names, or `.` for everything, to prepare files for adding to the repository.
 1. Use `git status` to check the status of the repository.
@@ -1237,9 +1237,9 @@ There are two types of exceptions:
 1. Checked Exceptions
 1. Unchecked Exceptions
 
-Checked exceptions have to be handled when a program is compiled. The programr is forced to build in a way of handling these exceptions by the compiler.
+Checked exceptions have to be handled when a program is compiled. The programmer is forced to build in a way of handling these exceptions by the compiler.
 
-Unchecked exceptions do not have to be handled when a program is compiled. It is up to the programr to handle them at runtime.
+Unchecked exceptions do not have to be handled when a program is compiled. It is up to the programmer to handle them at runtime.
 
 Java documents states: "If a client can reasonably be expected to recover from an exception, make it a checked exception. If a client cannot do anything to recover from the exception, make it an unchecked exception".
 
@@ -1323,7 +1323,7 @@ Dependency injection is a form of object delegation rather than object inheritan
 
 ## Generics
 
-Type safety add stability to your code by making more of your bugs detectable at compile-time, rather than waiting for things to go wrong at run-time.
+Type safety adds stability to your code by making more of your bugs detectable at compile-time, rather than waiting for things to go wrong at run-time.
 Generics allow type safety between classes in a 'of-a' relationship with each other.
 
 With Generics, you can set the generic type to be a non-primitive type e.g. Integer and then if you pass in a String you will get a compile-time error.
