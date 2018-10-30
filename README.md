@@ -1439,3 +1439,23 @@ Access Levels
 | no modifier |   Y   |    Y    |          |       |
 | private     |   Y   |         |          |       |
 ```
+
+## Product Design
+
+- When approaching product design, the key is to focus on the features and functionality that you want the product to provide, rather than the specifics of how the code should be written.
+
+- Remember - always provide examples!
+
+- It can be helpful to add hyperlinks to your documents to guide the reader to towards certain information.
+
+- You can do this by using ```[]()``` where
+
+``` markdown
+[Name User Clicks On](ExactNameOfFile)
+```
+
+- For example:
+
+``` markdown
+[Product Design](productdesign)
+```
