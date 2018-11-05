@@ -1459,3 +1459,22 @@ Access Levels
 ``` markdown
 [Product Design](productdesign)
 ```
+
+## Rules for Writing Clean Code
+
+Use the acronym `SOLID` to help you remember:
+
+`S` - Single Responsibility Principle.
+- A class has only one reason for existing.
+
+`O` - Open Closed Principle.
+- A class can be open to enhancements, but closed against modifications.
+
+`L` - Liskov Substitution Principle.
+- A subtype should behave in the same way as its base type.
+
+`I` - Interface Segregation Principle.
+- The end user does not need to see all of the details.
+
+`D` - Dependency Inversion Principle.
+- Classes should depend on classes at their own level (high or low), but it is better if classes depend on interfaces instead.
