@@ -1478,3 +1478,34 @@ Use the acronym `SOLID` to help you remember:
 
 `D` - Dependency Inversion Principle.
 - Classes should depend on classes at their own level (high or low), but it is better if classes depend on interfaces instead.
+
+## Rules for Well Written Tests
+
+`Arrange` - Create the context.
+
+`Act` - Execute the method.
+
+`Assert` - Check the result is as expected.
+
+Example:
+
+```java
+@Test
+    public void ordersTransactions() {
+        //Arrange
+        final Transaction yesterday = makeTransaction("2018-04-20");
+        final Transaction today = makeTransaction("2018-05-15");
+        final Transaction tomorrow = makeTransaction("2018-06-12");
+
+        //Act
+        final List<Transaction> unorderedTransactions = Arrays.asList(yesterday, tomorrow, today);
+        final List<Transaction> expecteds = Arrays.asList(yesterday, today, tomorrow);
+        final List<Transaction> actual = target.order(unorderedTransactions);
+
+        //Assert
+        assertEquals(actual.size(), expecteds.size());
+        for (int i = 0; i < actual.size(); i++) {
+            assertEquals(expecteds.get(i), actual.get(i));
+        }
+    }
+```
