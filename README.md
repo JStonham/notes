@@ -1509,3 +1509,36 @@ Example:
         }
     }
 ```
+
+## Build Tools and Dependency Management in Java
+
+Build tools are software that allow tasks involved in building an application to be automated. They are particularly useful in the following situations:
+- When working on larger projects where manually executing different tasks would be time consuming.
+- When the same tasks should always be run in the same order.
+- When tasks depend on code from another source (library).
+
+Examples of Java Build Tools are:
+1. `Ant+Ivy`
+1. `Maven`
+1. `Gradle`
+
+There are three components needed to define a dependency: the location, the name and the version. The different build tools each use a slightly different syntax.
+
+1. `Ant+Ivy` = org, name, rev.
+1. `Maven` = groupID, artifactID, version.
+1. `Gradle` = group, name, version.
+
+What happens if there is more than one version available?
+
+The build tools tackle this issue in different ways:
+
+### `Maven` 
+Maven uses a nearest definition strategy, in which the closest version to the root is the version that will always be used. This means if multiple versions are listed in the same location, it will take the first one even if that is not the latest version.
+
+A work-around for this is to add the correct version to the POM (Project Object Model) file. The POM file is an XML file that contains information about the project and configuration details used by Maven to build the project. It contains the default values for most projects. This will then override any other versions defined in other dependencies.
+
+### `Ant+Ivy` and `Gradle`
+
+Gradle and Ivy select the highest version.
+
+A similar work-around to Maven can be used where one particular version can be set to override other versions.
