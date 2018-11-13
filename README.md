@@ -1542,3 +1542,14 @@ A work-around for this is to add the correct version to the POM (Project Object 
 Gradle and Ivy select the highest version.
 
 A similar work-around to Maven can be used where one particular version can be set to override other versions.
+
+## `Continuous Integration`
+
+#### `Continuous Integration` (CI) is the process of continually re-running the build process whenever a change is added to a repository. There are a number of tools that can be used to perform the CI function in Java. CI has a number of advantages, including:
+- Ensuring bugs in the code are detected earlier.
+- Keeping track of the latest executable version.
+- Reducing assumptions.
+- Allow the build process to be automated.
+- Allow testing to be automated.
+- Encouraging developers to make frequent commits.
+- Speeding up the development process.
