@@ -1591,3 +1591,17 @@ You can't revert from the following to the following:
 `2.0.0`  ---->  `1.1.0`
 
 `1.1.0`  ---->  `1.0.1`
+
+## Software Communication
+
+An application program interface (API) is a set of routines, protocols, and tools for building software applications. They specify how software components should interact.
+
+APIs are used when programming graphical user interface (GUI) components. They are much more rigid than GUI as they are designed for a computer, rather than a person, to interact with.
+
+IP address = talk to me here
+
+API = say these things to me
+
+How to search for a famous, public IP address (Google):
+
+`ping 8.8.8.8`
