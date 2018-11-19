@@ -1543,9 +1543,9 @@ Gradle and Ivy select the highest version.
 
 A similar work-around to Maven can be used where one particular version can be set to override other versions.
 
-## `Continuous Integration`
+## Continuous Integration
 
-#### `Continuous Integration` (CI) is the process of continually re-running the build process whenever a change is added to a repository. There are a number of tools that can be used to perform the CI function in Java. CI has a number of advantages, including:
+Continuous Integration (CI) is the process of continually re-running the build process whenever a change is added to a repository. There are a number of tools that can be used to perform the CI function in Java. CI has a number of advantages, including:
 - Ensuring bugs in the code are detected earlier.
 - Keeping track of the latest executable version.
 - Reducing assumptions.
@@ -1553,3 +1553,41 @@ A similar work-around to Maven can be used where one particular version can be s
 - Allow testing to be automated.
 - Encouraging developers to make frequent commits.
 - Speeding up the development process.
+
+## Semantic Versioning
+
+There are different ways of versioning software, one of which is semantic versioning.
+
+Semantic Versioning has three parts:
+
+| Breaking |     | Feature |     | Patch | 
+| -------- | --- | ------- | --- | ----  | 
+|     0   |   .  |    0    |  .   |   0  | 
+
+Breaking = a major release.
+
+Feature = a minor release.
+
+Patch = a fix for a bug in the code.
+
+This versioning system generally starts with `0.1.0` as the first thing developers would add is a feature. Whilst the breaking version is `0` the application should still be in pre-production.
+
+Remember: the `.` are not decimal points! You can have versions such as `12.15.111`.
+
+When your code has dependencies, you can upgrade to newer versions of the dependency code, as long as they are features or patches. Automatically upgrading to a newer major release is VERY risky as it will probably break your code! Also, you can't go back to using older versions of the dependency without changing your code unless the difference is a patch.
+
+For example, you can upgrade from the following to the following:
+
+`1.0.0`  ---->  `1.0.1`
+
+`1.0.1`  ---->  `1.1.0`
+
+You can't automatically upgrade to the next major release without checking the code!
+
+`1.1.0`  ---->  `2.0.0`
+
+You can't revert from the following to the following:
+
+`2.0.0`  ---->  `1.1.0`
+
+`1.1.0`  ---->  `1.0.1`
