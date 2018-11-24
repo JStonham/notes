@@ -1605,3 +1605,13 @@ API = say these things to me
 How to search for a famous, public IP address (Google):
 
 `ping 8.8.8.8`
+
+## Technical Debt
+
+Technical debt is a software devleopment concept which involves a compromise whereby the programmer gets value from the code sooner by taking the simpler approach at first to make the application work and shelving the more complicated or time-consuming, additional value work for later.
+
+### Example
+
+Twitter started with allowing users only 140 characters per message to get value sooner, adding the possibility of giving users more characters to their technical debt.
+
+A few years later Twitter increased the amount of characters users were allowed (although by this time the small number of characters allowed had become a famous feature).
