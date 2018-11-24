@@ -1615,3 +1615,40 @@ Technical debt is a software devleopment concept which involves a compromise whe
 Twitter started with allowing users only 140 characters per message to get value sooner, adding the possibility of giving users more characters to their technical debt.
 
 A few years later Twitter increased the amount of characters users were allowed (although by this time the small number of characters allowed had become a famous feature).
+
+## The Fibonacci Sequence
+
+The Fibonacci Sequence is a famous sequence of numbers with uses in maths, science, nature and programming!
+
+The sequence is based on the rule that every number in the sequence is the sum of the previous two numbers.
+
+The sequence begins with 1. The next number is the sum of 1 and the previous number (0) so it is 1. After that, 1 + 1 = 2 and 1 + 2 = 3.
+
+```
+|     1     |   1   |   2   |   3   |   5   |   8   |
+| --------- | ----- | ----- | ----- | ----- | ----- |
+| Beginning | 0 + 1 | 1 + 1 | 1 + 2 | 2 + 3 | 3 + 5 |
+```
+
+The rule can also be written as:
+
+x<sub>n</sub> = x<sub>n-1</sub> + x<sub>n-2</sub>
+
+Where x<sub>n</sub> is a number in the sequence
+
+x<sub>n-1</sub> is the number before x<sub>n</sub>
+
+x<sub>n-2</sub> is the number before x<sub>n-1</sub>
+
+### Example
+
+To calculate x<sub>n</sub> where n = 10:
+
+x<sub>10</sub> = x<sub>10-1</sub> + x<sub>10-2</sub>
+
+x<sub>n</sub> = x<sub>9</sub> + x<sub>8</sub>
+
+x<sub>n</sub> = 34 + 21
+
+x<sub>n</sub> = 55
+
