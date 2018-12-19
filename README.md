@@ -1649,3 +1649,29 @@ x<sub>n</sub> = x<sub>9</sub> + x<sub>8</sub>
 x<sub>n</sub> = 34 + 21
 
 x<sub>n</sub> = 55
+
+## Variable Arguments (Var Args)
+
+Var Args simplifies the creation of methods that need to take a varying number of arguments. The syntax is:
+
+returnType methodName(argType ...variableName)
+
+## xor (^)
+
+Operator for this or that, but not both. Best used with booleans!
+
+With numbers, it has the following effect:
+
+```
+| |0|1|1|1|0|1|0|0|
+|+|0|1|1|0|1|1|1|0|
+|-----------------|
+|=|0|0|0|1|1|0|1|0|
+```
+
+```
+     4+16+32+64
++    2+4+8+32+64
+
+=    2+8+16
+```
