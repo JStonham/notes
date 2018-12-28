@@ -1592,6 +1592,8 @@ You can't revert from the following to the following:
 
 `1.1.0`  ---->  `1.0.1`
 
+Try to avoid having lots of dependencies, as when the bigger libraries release their latest version, your software may need to wait an additional amount of time for the smaller libraries it depends on to catch up with their dependencies on the bigger libraries.
+
 ## Software Communication
 
 An application program interface (API) is a set of routines, protocols, and tools for building software applications. They specify how software components should interact.
@@ -1685,3 +1687,19 @@ Maps can be used to link many different things.
 For JSON (JavaScript Object Notation), maps link keys (Strings) to values (Objects). JSON is the way that JavaScript writes objects.
 
 HashMap is one specific implementation of Maps. You can enter a key and get its assigned value. If no value has been assigned to the key, the value returned will be null.
+
+## Viewing and Editing Previous Git Commits
+
+The command `git log` will show any previous commits. The 16 digit and letter codes that follow the word `commit` are called hash codes. The command `git checkout` followed by a hash code will take you to a previous version of your commit. Use `git checkout -` to go back to the commit you were on before you checked out a previous version.
+
+#### Example
+
+Currently on commit number 5...
+
+`git log` (shows previous commits)
+
+`commit 08858d4830918846219dc638573bb847218fe594` (previous commit (number 3))
+
+`git checkout 08858d4830918846219dc638573bb847218fe594` (go to this previous commit)
+
+`git checkout -` (go back to commit number 5)
