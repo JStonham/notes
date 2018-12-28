@@ -1675,3 +1675,13 @@ With numbers, it has the following effect:
 
 =    2+8+16
 ```
+
+## Maps
+
+Maps are a collection of key-to-value pairings. Each key is unique. If you reassign a different value to a key it will overwrite the previous value.
+
+Maps can be used to link many different things.
+
+For JSON (JavaScript Object Notation), maps link keys (Strings) to values (Objects). JSON is the way that JavaScript writes objects.
+
+HashMap is one specific implementation of Maps. You can enter a key and get its assigned value. If no value has been assigned to the key, the value returned will be null.
