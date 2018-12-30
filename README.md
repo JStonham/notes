@@ -1688,6 +1688,34 @@ For JSON (JavaScript Object Notation), maps link keys (Strings) to values (Objec
 
 HashMap is one specific implementation of Maps. You can enter a key and get its assigned value. If no value has been assigned to the key, the value returned will be null.
 
+#### Example
+```java
+import org.junit.Test;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Testytest {
+
+    @Test
+    public void test() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("foo", 42);
+        map.put("bar", 444);
+        map.put("foo", -23);
+
+        Integer foo = map.get("foo");
+        System.out.println(foo);
+    }
+}
+```
+In the code above, a new HashMap of type Map is declared with the keys set as Strings and the values set as Integers.
+
+To add new key-value (String-Integer) pairings, use `map.put()`.
+
+To retrieve values using the key, use `map.get()`.
+
+As each key is unique, putting foo as -23 overwrites the previous value of 42 so when you get foo, the value will be -23.
+
 ## Viewing and Editing Previous Git Commits
 
 The command `git log` will show any previous commits. The 16 digit and letter codes that follow the word `commit` are called hash codes. The command `git checkout` followed by a hash code will take you to a previous version of your commit. Use `git checkout -` to go back to the commit you were on before you checked out a previous version.
