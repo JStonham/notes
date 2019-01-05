@@ -1741,3 +1741,9 @@ Currently on commit number 5...
 `git checkout 08858d4830918846219dc638573bb847218fe594` (go to this previous commit)
 
 `git checkout -` (go back to commit number 5)
+
+# Running Tests in the Command Line
+
+It is possible to run the tests you have written in your code in the command line.
+
+If you are using a gradle build tool, navigate to your repository and use the command `./gradlew test` to run your unit tests.
