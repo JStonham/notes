@@ -1742,8 +1742,33 @@ Currently on commit number 5...
 
 `git checkout -` (go back to commit number 5)
 
-# Running Tests in the Command Line
+## Running Tests in the Command Line
 
 It is possible to run the tests you have written in your code in the command line.
 
 If you are using a gradle build tool, navigate to your repository and use the command `./gradlew test` to run your unit tests.
+
+## Coding with Time Zones
+
+Working with time zones when programming can get complicated very fast! Not only are there many time zones in use around the world (including some countries using different time zones for summer and winter), but at some point in their history many countries have skipped days or even weeks!
+
+If your code needs a default time zone, the best options are:
+
+- Coordinated Universal Time (UTC)
+- Unix Time Stamp (at least until 19/01/2038)
+
+### Coordinated Universal Time (UTC)
+
+UTC is not a time zone, but a time standard. The offical abbreviation is a compromise between the English Coordinated Universal Time (CUT) and the French Temps Universel Coordonné (TUC).
+
+The concept of Universal Time was formalised in 1884, with Greenwich Mean Time (GMT) being chosen as the world's time standard. The offical abbreviation was chosen in 1967, with more adjustments made to the time until 1972. From 1972, GMT became a time zone (no longer universal as only used by some countries) although in practice it keeps the same time as UTC.
+
+UTC is determined using two components:
+1. International Atomic Time (TAI): A combination of the output of the most precise clocks worldwide, which provides the exact speed for our clocks to tick.
+1. Universal Time (UT1): The length of a day on Earth (rotation on its axis).
+
+### Unix Time Stamp
+
+The Unix Time Stamp is a way of tracking time as a running total of seconds between the Unix Epoch and the present. The count starts at the Unix Epoch on 01/01/1970 at UTC and runs until the present moment at any given time around the world.
+
+Unfortunately, on 19/01/2038 the Unix Time Stamp will cease to work due to a 32-bit overflow. Before this moment any dependent applications will either need to adopt a new convention for time stamps or be migrated to 64-bit systems (which would buy the time stamp a little more time).
