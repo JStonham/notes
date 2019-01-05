@@ -590,12 +590,19 @@ Your filesystem comprises directories (folders) and files. That's just about it.
 Command | description
 ---------------------
 `history`  | shows the history of all commands that have been run
+
 `cd`  | Change Directory
+
 `ls`  | LiSt contents of current directory
+
 `nano`  | A easy-to-use command line text editor
+
 `cat`  | conCATenates/combines - shows you the file
+
 `cp`  | CoPy file
+
 `mv`  | MoVe file or directory. In Bash moving and renaming are the same operation
+
 `rm`  | ReMove file - be VERY careful with this one, as files do not end up in the trash and are gone forever!
 
 Concept | description
@@ -613,8 +620,11 @@ All of these commands must begin with `git` followed by a space.
 Command | description
 ---------------------
 `status`  | checking the state of a repository
+
 `init`  | creates an repository with no commits from the current directory
+
 `add`  | adds files where the names succeed the key word
+
 `commit -m "<commit message here>"` | commits the files to the repository. The `-m` flag is needed so you don't open up your shell editor
 
 ## Git Repositories
