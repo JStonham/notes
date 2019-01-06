@@ -1772,3 +1772,16 @@ UTC is determined using two components:
 The Unix Time Stamp is a way of tracking time as a running total of seconds between the Unix Epoch and the present. The count starts at the Unix Epoch on 01/01/1970 at UTC and runs until the present moment at any given time around the world.
 
 Unfortunately, on 19/01/2038 the Unix Time Stamp will cease to work due to a 32-bit overflow. Before this moment any dependent applications will either need to adopt a new convention for time stamps or be migrated to 64-bit systems (which would buy the time stamp a little more time).
+
+## Override
+
+Classes need the ability to override behaviour stipulated by classes or interfaces they extend or implement.
+
+For example, an Animal class contains a method called Speak. The default behaviour for Speak is blank, which is fine for a Mouse class, but for a Dog or Cat class this method would need to be overriden by Bark or Meow.
+
+Overriding inherited behaviour is done by defining the desired behaviour in a method in the sub-class.
+
+Make sure you use the annotation `@Override` when you override methods for 2 good reasons:
+
+1. The compiler will check to make sure you are actually overriding the method you want to override.
+1. It will make your code more readable.
