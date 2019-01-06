@@ -1690,11 +1690,7 @@ With numbers, it has the following effect:
 
 ## Maps
 
-Maps are a collection of key-to-value pairings. Each key is unique. If you reassign a different value to a key it will overwrite the previous value.
-
-Maps can be used to link many different things.
-
-For JSON (JavaScript Object Notation), maps link keys (Strings) to values (Objects). JSON is the way that JavaScript writes objects.
+Maps are a collection of key-to-value pairings. Each key is unique. If you reassign a different value to a key it will overwrite the previous value. Maps can be used to link many different things.
 
 HashMap is one specific implementation of Maps. You can enter a key and get its assigned value. If no value has been assigned to the key, the value returned will be null.
 
@@ -1725,6 +1721,41 @@ To add new key-value (String-Integer) pairings, use `map.put()`.
 To retrieve values using the key, use `map.get()`.
 
 As each key is unique, putting foo as -23 overwrites the previous value of 42 so when you get foo, the value will be -23.
+
+## JavaScript Object Notation (JSON)
+
+JavaScript Object Notation (JSON) is a way of storing data and exchanging data between a browser and a server. Although JSON uses the JavaScript syntax, its format is text so it can be read and used as a data format by any programming language.
+
+JSON has the following data types:
+
+- a string
+- a number
+- an object (JSON object)
+- an array
+- a boolean
+- null
+
+#### Example of a JSON Object containing an array of objects:
+``` json
+{ "Dogs":
+    [
+        {
+        "name": "Bertie",
+        "age": 5
+        },
+        {
+        "name": "Pia",
+        "age": 2
+        }
+    ]
+}
+```
+
+Java can create JSON representations of its objects using JSONArray and JSONObject.
+
+JSONArray has an add() method which adds objects of type JSONObject, and JSONObject has a put() method to populate fields.
+
+The difference between JSONArray/JavaList and JSONObject/JavaMap is that although they are both objects, array/list is an ordered sequence where components are identified by their place in the list. In contrast, object/map is an unordered collection of components that can be identified by their specified keys.
 
 ## Viewing and Editing Previous Git Commits
 
