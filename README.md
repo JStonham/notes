@@ -1785,3 +1785,11 @@ Make sure you use the annotation `@Override` when you override methods for 2 goo
 
 1. The compiler will check to make sure you are actually overriding the method you want to override.
 1. It will make your code more readable.
+
+## `printStackTrace()` vs `RuntimeException()`
+
+Both `printStackTrace()` and `throw new RuntimeException()` are useful when catching exceptions in your code, but `RuntimeException()` has a few advantages:
+
+- It gives the programmer more control over the exception.
+- It gives the programmer the power of logging exceptions.
+- It reduces visibility of the working of your code for potential hackers.
