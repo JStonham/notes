@@ -1736,9 +1736,10 @@ JSON has the following data types:
 - null
 
 #### Example of a JSON Object containing an array of objects:
+
 ``` json
-{ "Dogs":
-    [
+{
+     "dogs": [
         {
         "name": "Bertie",
         "age": 5
@@ -1802,24 +1803,24 @@ UTC is determined using two components:
 
 The Unix Time Stamp is a way of tracking time as a running total of seconds between the Unix Epoch and the present. The count starts at the Unix Epoch on 01/01/1970 at UTC and runs until the present moment at any given time around the world.
 
-Unfortunately, on 19/01/2038 the Unix Time Stamp will cease to work due to a 32-bit overflow. Before this moment any dependent applications will either need to adopt a new convention for time stamps or be migrated to 64-bit systems (which would buy the time stamp a little more time).
+Unfortunately, on 19/01/2038 the Unix Time Stamp will cease to work due to a 32-bit overflow. Any dependent applications will need to store the timestamps in 32-bit long instead integers.
 
 ## Override
 
 Classes need the ability to override behaviour stipulated by classes or interfaces they extend or implement.
 
-For example, an Animal class contains a method called Speak. The default behaviour for Speak is blank, which is fine for a Mouse class, but for a Dog or Cat class this method would need to be overriden by Bark or Meow.
+For example, an Animal class contains a method called `speak`. The default implementation for `speak` exists in the Animal class and is blank (`""`), which is fine for a Mouse class, but for a Dog or Cat class this method would need to be overriden with `"Bark"` or `"Meow"`.
 
 Overriding inherited behaviour is done by defining the desired behaviour in a method in the sub-class.
 
 Make sure you use the annotation `@Override` when you override methods for 2 good reasons:
 
 1. The compiler will check to make sure you are actually overriding the method you want to override.
-1. It will make your code more readable.
+1. It communicates your intention to other programmers, which makes your code more readable.
 
 ## `printStackTrace()` vs `RuntimeException()`
 
-Both `printStackTrace()` and `throw new RuntimeException()` are useful when catching exceptions in your code, but `RuntimeException()` has a few advantages:
+When you are dealing with exceptions in your code, use `throw new RuntimeException()`. Although `printStackTrace()` can sometimes be useful for debugging, it does not handle exceptions. At best it is redundant and at worst it can make it very hard to find the useful information. Some of the advantages of `throw new RuntimeException()` for handling exceptions are:
 
 - It gives the programmer more control over the exception.
 - It gives the programmer the power of logging exceptions.
