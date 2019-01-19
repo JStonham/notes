@@ -1892,3 +1892,66 @@ The following example begins in the same way as the one above, but just before t
 ```
 
 Note: In order for the value of `a` to be available in the sub shell, the sub shell must be created just after the variable has been exported.
+
+## `finally`
+
+The `finally` block in Java can be useful for making sure specified parts of code are run last, but it is worth using carefully as it can also assist with unintentionally overriding previous commands.
+
+The following example contains a try-with-resources statement. This is when a `try` statement declares one or more resources (`BufferedWriter`). Resources are objects that must be closed after the program is finished with them i.e. at the end of the statement.
+
+Because `BufferedWriter` is a resource that needs to be closed, once the `writer.write()` method has been called an `IOException` is automatically thrown.
+
+``` java
+ @Test
+    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
+        String home = System.getProperty("user.home");
+        String json = "{}";
+        try {
+            writer = new BufferedWriter(new FileWriter(home + "/.config/budjen/transactions.json"));
+            writer.write(json);
+            } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+```
+
+It is tempting to use a `finally` block to make sure the resource `BufferedWriter` will be closed even when an exception is thrown, but using a `finally` block in this case allows the new exception to override the previous exception so the contents of that will be lost.
+
+However, `BufferedWriter` implements `Closeable` (as does any class with a `close()` method). Classes that implement `Closeable` do not need to use a `finally` block as `Closeable` ensures that the resource is closed at the end of the statement.
+
+``` java
+    @Test
+    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
+                final String dir = System.getProperty("user.home") + "/.test/budjen/";
+        new File(dir).mkdirs();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dir + "transactions.json"))) {
+            writer.write("{}");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+             }
+    }
+```
+
+## Stack Overflow
+
+Stack Overflow is an online community where programmers of all abilities can share their knowledge, learn new skills and look for new opportunites.
+
+Programmers can build reputation points by asking questions and providing answers and can use these reputation points as currency to increase the likelihood of receiving useful answers to their questions.
+
+## Locally running `checkstyle` in the command line
+
+To run checkstyle in the command line when using a Gradle build tool, use the command `./gradlew checkstyle`. If your repository has multiple packages you wish to run separately, append the name of the package. For example, if you have two packages called Main and Test:
+
+`./gradlew checkstyleMain`
+
+or
+
+`./gradlew checkstyleTest`
