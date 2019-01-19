@@ -1825,3 +1825,70 @@ When you are dealing with exceptions in your code, use `throw new RuntimeExcepti
 - It gives the programmer more control over the exception.
 - It gives the programmer the power of logging exceptions.
 - It reduces visibility of the working of your code for potential hackers.
+
+## Unix Directories
+
+For operating systems built on Unix (e.g. Linux and Mac) the highest level of the directory, also called the root folder, is denoted by `/`.
+
+The home folder can be written as `/home/username` (e.g.`/home/jen`) or `~`.
+
+The command `pwd` (print working directory) will print the current directory to the screen.
+
+The command `echo $0` will print the name of the shell you are using.
+
+The command `echo $?` will find the value of the last executed command and return it as a number. If the value exists then a `0` will be returned. If the value does not exist a number other than `0` will be returned (which number depends on the shell you are using).
+
+The command `cat` followed by a filename will show you the contents of a file. This command only works for files (it is like `ls` for directories). Avoid `cat ls` as the result is binary.
+
+## Unix Environment Variables
+
+Environment Variables are key-value pairings where the keys can be assigned to different values over time. They are useful for software which has variables it needs to treat as constants, where the values might need to be reassigned over time.
+
+Environment Variables are also useful for storing changes that the user would like to persist in every instance of the command line.
+
+One of the most common Environment Variables is:
+
+Key: `$HOME`
+
+Value: `/home/username`
+
+You can print the `/home/username` value to the command line using `echo $HOME`.
+
+Another common Environment Variable is:
+
+Key: `$PATH`
+
+Value: A list of directories which the operating system uses to search for executable programs e.g. `/usr/local/bin`.
+
+You can print the list of directories using `echo $PATH`.
+
+You can add a directory to the list using `export PATH=/put/directory/location/here/:$PATH` or `export PATH=.:$PATH` which will add the current directory to the list.
+
+### Exporting Environment Variables to Sub Shells
+
+Sub shells can be created in the command line using the command `bash`. By default, these sub shells will not have access to (inherit) the variables of the shell they were created from.
+
+In the following example, a new variable called `a` is created and assigned the value of `learning-bash.sh` (line 1). The command to print the value of `a` is line 2 and the value of `a` is line 3. Line 4 creates a new sub shell. Line 5 calls print on value `a` and line 6 returns the value of `a` in the sub shell.
+
+```
+1    a=learning-bash.sh
+2    echo $a
+3    learning-bash.sh
+4    bash
+5    echo $a
+6    
+```
+
+The following example begins in the same way as the one above, but just before the new sub shell is created (`bash`) we can use the command `export` followed by the name of the variable to extend the value of this variable to the sub shell. Then when we print the value of `a` (`echo $a`), the value of `a` defined in the original shell has been inherited by the sub shell.
+
+```
+1    a=learning-bash.sh
+2    echo $a
+3    learning-bash.sh
+4    export a
+5    bash
+6    echo $a
+7    learning-bash.sh
+```
+
+Note: In order for the value of `a` to be available in the sub shell, the sub shell must be created just after the variable has been exported.
