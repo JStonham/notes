@@ -1832,13 +1832,13 @@ For operating systems built on Unix (e.g. Linux and Mac) the highest level of th
 
 The home folder can be written as `/home/username` (e.g.`/home/jen`) or `~`.
 
-The command `pwd` (print working directory) will print the current directory to the screen.
+The command `pwd` (print working directory) will print the current directory to the screen. For example, if I am in my home directory it will print `/home/jen`.
 
 The command `echo $0` will print the name of the shell you are using.
 
-The command `echo $?` will find the value of the last executed command and return it as a number. If the value exists then a `0` will be returned. If the value does not exist a number other than `0` will be returned (which number depends on the shell you are using).
+The command `echo $?` will find the return value of the last program that was executed. Since all programs return a number this command will also return a number. If the program was executed without any issues, the convention is for a `0` to be returned. If the program encountered issues during execution then a number other than `0` will be returned (which number depends on the shell you are using).
 
-The command `cat` followed by a filename will show you the contents of a file. This command only works for files (it is like `ls` for directories). Avoid `cat ls` as the result is binary.
+The command `cat` followed by a filename will show you the contents of a file (it is similar to `ls` for directories). Note: `cat` only works well for files.
 
 ## Unix Environment Variables
 
@@ -1858,11 +1858,24 @@ Another common Environment Variable is:
 
 Key: `$PATH`
 
-Value: A list of directories which the operating system uses to search for executable programs e.g. `/usr/local/bin`.
+Value: A list of directories which the shell uses to search for executable programs e.g. `/usr/local/bin`.
 
 You can print the list of directories using `echo $PATH`.
 
-You can add a directory to the list using `export PATH=/put/directory/location/here/:$PATH` or `export PATH=.:$PATH` which will add the current directory to the list.
+You can add a directory to the list using one of the following:
+
+1. `export PATH=$PATH:$HOME/scripts`
+1. `export PATH=$HOME/scripts:$PATH`
+1. `export PATH=$PATH:.`
+1. `export PATH=.:$PATH` 
+
+The first command will add `$HOME/scripts` to the end of the `$PATH` variable.
+
+The second command will add `$HOME/scripts` to the beginning of the `$PATH` variable.
+
+The third command will add the directory you are currently in to the end of the `$PATH` variable.
+
+The fourth command will add the directory you are currently in to the beginning of the `$PATH` variable.
 
 ### Exporting Environment Variables to Sub Shells
 
@@ -1923,20 +1936,20 @@ Because `BufferedWriter` is a resource that needs to be closed, once the `writer
     }
 ```
 
-It is tempting to use a `finally` block to make sure the resource `BufferedWriter` will be closed even when an exception is thrown, but using a `finally` block in this case allows the new exception to override the previous exception so the contents of that will be lost.
+Before Java 5, programmers had to use a `finally` block to make sure the resource `BufferedWriter` would be closed even when an exception is thrown. However, using a `finally` block in this case allows the new exception to override the previous exception so the contents of that will be lost.
 
-However, `BufferedWriter` implements `Closeable` (as does any class with a `close()` method). Classes that implement `Closeable` do not need to use a `finally` block as `Closeable` ensures that the resource is closed at the end of the statement.
+From Java 5, `BufferedWriter` implements `Closeable` (as does any class with a `close()` method). Classes that implement `Closeable` do not need to use a `finally` block as `Closeable` ensures that the resource is closed at the end of the statement.
 
 ``` java
     @Test
     public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
-                final String dir = System.getProperty("user.home") + "/.test/budjen/";
+        final String dir = System.getProperty("user.home") + "/.test/budjen/";
         new File(dir).mkdirs();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(dir + "transactions.json"))) {
             writer.write("{}");
         } catch (IOException e) {
             throw new RuntimeException(e);
-             }
+        }
     }
 ```
 
@@ -1944,11 +1957,11 @@ However, `BufferedWriter` implements `Closeable` (as does any class with a `clos
 
 Stack Overflow is an online community where programmers of all abilities can share their knowledge, learn new skills and look for new opportunites.
 
-Programmers can build reputation points by asking questions and providing answers and can use these reputation points as currency to increase the likelihood of receiving useful answers to their questions.
+Programmers can build reputation points by asking questions and providing answers. They can use these reputation points to offer bounties to increase the likelihood of receiving useful answers to their questions.
 
 ## Locally running `checkstyle` in the command line
 
-To run checkstyle in the command line when using a Gradle build tool, use the command `./gradlew checkstyle`. If your repository has multiple packages you wish to run separately, append the name of the package. For example, if you have two packages called Main and Test:
+To run checkstyle in the command line when using a Gradle build tool, use the command `./gradlew checkstyle`. If your repository has multiple source directories, you will need to append the name of the source directory you wish to run `checkstyle` against. For example, if you have two source directories called Main and Test:
 
 `./gradlew checkstyleMain`
 
