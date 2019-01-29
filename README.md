@@ -1908,37 +1908,11 @@ Note: In order for the value of `a` to be available in the sub shell, the sub sh
 
 ## `finally`
 
-The `finally` block in Java can be useful for making sure specified parts of code are run last, but it is worth using carefully as it can also assist with unintentionally overriding previous commands.
+After executing a `try` block, you can use `catch` to handle exceptions or `finally` (or both). Unlike `catch`, `finally` is used for making sure that the commands contained within it are exceuted, whether or not an exception has been thrown.
 
-The following example contains a try-with-resources statement. This is when a `try` statement declares one or more resources (`BufferedWriter`). Resources are objects that must be closed after the program is finished with them i.e. at the end of the statement.
+The `finally` block can be used after a try-with-resources statement. This is when a `try` statement declares one or more resources e.g. `try (resource) {method}`. Resources are objects that must be closed after the program is finished with them i.e. at the end of the statement. Once the try block has been executed, all resources are automaticaly closed.
 
-Because `BufferedWriter` is a resource that needs to be closed, once the `writer.write()` method has been called an `IOException` is automatically thrown.
-
-``` java
- @Test
-    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
-        String home = System.getProperty("user.home");
-        String json = "{}";
-        try {
-            writer = new BufferedWriter(new FileWriter(home + "/.config/budjen/transactions.json"));
-            writer.write(json);
-            } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-```
-
-Before Java 5, programmers had to use a `finally` block to make sure the resource `BufferedWriter` would be closed even when an exception is thrown. However, using a `finally` block in this case allows the new exception to override the previous exception so the contents of that will be lost.
-
-From Java 5, `BufferedWriter` implements `Closeable` (as does any class with a `close()` method). Classes that implement `Closeable` do not need to use a `finally` block as `Closeable` ensures that the resource is closed at the end of the statement.
+From Java 5, `BufferedWriter` implements `Closeable`. Classes that implement `Closeable` do not need to use a `finally` block as long as they are used within a try-with-resources block. The try-with-resources block then calls the `Closeable#close()` method, which ensures that the resource is closed at the end of the statement.
 
 ``` java
     @Test
@@ -1949,6 +1923,32 @@ From Java 5, `BufferedWriter` implements `Closeable` (as does any class with a `
             writer.write("{}");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+```
+
+Before Java 5, programmers had to use a `finally` block to make sure resources would be closed even when an exception was thrown. However, using a `finally` block in this case allows any exception within the `finally` block to override any previous exceptions.
+
+The following example has a `try` block that contains `BufferedWriter`. `BufferedWriter` is a resource that needs to be closed once it has been used. Therefore, after the try block has been executed, the finally block is called (if an exception has been thrown, the `catch` block is executed first).
+
+``` java
+ @Test
+    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
+        String home = System.getProperty("user.home");
+        String json = "{}";
+        try {
+            writer = new BufferedWriter(new FileWriter(home + "/.config/budjen/transactions.json"));
+            writer.write(json);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 ```
