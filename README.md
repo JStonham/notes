@@ -1838,11 +1838,11 @@ The command `echo $0` will print the name of the shell you are using.
 
 The command `echo $?` will find the return value of the last program that was executed. Since all programs return a number this command will also return a number. If the program was executed without any issues, the convention is for a `0` to be returned. If the program encountered issues during execution then a number other than `0` will be returned (which number depends on the shell you are using).
 
-The command `cat` followed by a filename will show you the contents of a file (it is similar to `ls` for directories). Note: `cat` only works well for files.
+The command `cat` followed by a plaintext filename will show you the contents of a file (it is similar to `ls` for directories). `cat` only works well for plaintext files (e.g. markdown, java source code, .txt). `cat` will not work for images, zip files or word documents.
 
 ## Unix Environment Variables
 
-Environment Variables are key-value pairings where the keys can be assigned to different values over time. They are useful for software which has variables it needs to treat as constants, where the values might need to be reassigned over time.
+Environment Variables are key-value pairings where the keys can be assigned to different values over time. They are useful for software which has variables it needs to treat like constants, but where the values might need to be reassigned over time. They are good for identifying which environment your application is running in (e.g. in development, in production, running tests).
 
 Environment Variables are also useful for storing changes that the user would like to persist in every instance of the command line.
 
@@ -1866,16 +1866,12 @@ You can add a directory to the list using one of the following:
 
 1. `export PATH=$PATH:$HOME/scripts`
 1. `export PATH=$HOME/scripts:$PATH`
-1. `export PATH=$PATH:.`
-1. `export PATH=.:$PATH` 
 
 The first command will add `$HOME/scripts` to the end of the `$PATH` variable.
 
 The second command will add `$HOME/scripts` to the beginning of the `$PATH` variable.
 
-The third command will add the directory you are currently in to the end of the `$PATH` variable.
-
-The fourth command will add the directory you are currently in to the beginning of the `$PATH` variable.
+It is better to add new directories to the end of your path (first command) as the path is scanned in order from left to right. The first file to be executed will be the first executable file in the first directory. It's important to add new directories to the end to avoid accidentally overwriting built-in commands that your computer depends on.
 
 ### Exporting Environment Variables to Sub Shells
 
@@ -1908,28 +1904,11 @@ Note: In order for the value of `a` to be available in the sub shell, the sub sh
 
 ## `finally`
 
-After executing a `try` block, you can use `catch` to handle exceptions or `finally` (or both). Unlike `catch`, `finally` is used for making sure that the commands contained within it are exceuted, whether or not an exception has been thrown.
+After executing a `try` block, you can use `catch` to handle exceptions or `finally` (or both). Unlike `catch`, `finally` is used for making sure that the commands contained within it are executed, whether or not an exception has been thrown.
 
-The `finally` block can be used after a try-with-resources statement. This is when a `try` statement declares one or more resources e.g. `try (resource) {method}`. Resources are objects that must be closed after the program is finished with them i.e. at the end of the statement. Once the try block has been executed, all resources are automaticaly closed.
+The `finally` block can be used after a `try` block to make sure that all resources are automatically closed once the `try` block has been executed. However, using a `finally` block in this case allows any exception within the `finally` block to override any previous exceptions.
 
-From Java 5, `BufferedWriter` implements `Closeable`. Classes that implement `Closeable` do not need to use a `finally` block as long as they are used within a try-with-resources block. The try-with-resources block then calls the `Closeable#close()` method, which ensures that the resource is closed at the end of the statement.
-
-``` java
-    @Test
-    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
-        final String dir = System.getProperty("user.home") + "/.test/budjen/";
-        new File(dir).mkdirs();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dir + "transactions.json"))) {
-            writer.write("{}");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-```
-
-Before Java 5, programmers had to use a `finally` block to make sure resources would be closed even when an exception was thrown. However, using a `finally` block in this case allows any exception within the `finally` block to override any previous exceptions.
-
-The following example has a `try` block that contains `BufferedWriter`. `BufferedWriter` is a resource that needs to be closed once it has been used. Therefore, after the try block has been executed, the finally block is called (if an exception has been thrown, the `catch` block is executed first).
+The following example has a `try` block that contains `BufferedWriter`. `BufferedWriter` is a resource that needs to be closed once it has been used. After the `try` block has been executed, the `finally` block is called (if an exception has been thrown, the `catch` block is executed first).
 
 ``` java
  @Test
@@ -1953,6 +1932,21 @@ The following example has a `try` block that contains `BufferedWriter`. `Buffere
     }
 ```
 
+Traditionally you'd use a `finally` block to close any resources you needed in the `try {}`, but since Java 7 you can put a variable declaration inside `try () {}` to automatically call `close()` on this variable (so no `finally` is required).
+
+``` java
+    @Test
+    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
+        final String dir = System.getProperty("user.home") + "/.test/budjen/";
+        new File(dir).mkdirs();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dir + "transactions.json"))) {
+            writer.write("{}");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+```
+
 ## Stack Overflow
 
 Stack Overflow is an online community where programmers of all abilities can share their knowledge, learn new skills and look for new opportunites.
@@ -1961,10 +1955,20 @@ Programmers can build reputation points by asking questions and providing answer
 
 ## Locally running `checkstyle` in the command line
 
-To run checkstyle in the command line when using a Gradle build tool, use the command `./gradlew checkstyle`. If your repository has multiple source directories, you will need to append the name of the source directory you wish to run `checkstyle` against. For example, if you have two source directories called Main and Test:
+To run checkstyle in the command line when using a Gradle build tool, use the commands
 
 `./gradlew checkstyleMain`
 
 or
 
 `./gradlew checkstyleTest`
+
+This is because build tools assume applications will be built using the conventional building structure of main and test.
+
+You can create a `./gradlew checkstyle` command using the following:
+
+```
+task checkstyle {
+    dependsOn(checkstyleMain, checkstyleTest)
+}
+```
