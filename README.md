@@ -1825,3 +1825,150 @@ When you are dealing with exceptions in your code, use `throw new RuntimeExcepti
 - It gives the programmer more control over the exception.
 - It gives the programmer the power of logging exceptions.
 - It reduces visibility of the working of your code for potential hackers.
+
+## Unix Directories
+
+For operating systems built on Unix (e.g. Linux and Mac) the highest level of the directory, also called the root folder, is denoted by `/`.
+
+The home folder can be written as `/home/username` (e.g.`/home/jen`) or `~`.
+
+The command `pwd` (print working directory) will print the current directory to the screen. For example, if I am in my home directory it will print `/home/jen`.
+
+The command `echo $0` will print the name of the shell you are using.
+
+The command `echo $?` will find the return value of the last program that was executed. Since all programs return a number this command will also return a number. If the program was executed without any issues, the convention is for a `0` to be returned. If the program encountered issues during execution then a number other than `0` will be returned (which number depends on the shell you are using).
+
+The command `cat` followed by a plaintext filename will show you the contents of a file (it is similar to `ls` for directories). `cat` only works well for plaintext files (e.g. markdown, java source code, .txt). `cat` will not work for images, zip files or word documents.
+
+## Unix Environment Variables
+
+Environment Variables are key-value pairings where the keys can be assigned to different values over time. They are useful for software which has variables it needs to treat like constants, but where the values might need to be reassigned over time. They are good for identifying which environment your application is running in (e.g. in development, in production, running tests).
+
+Environment Variables are also useful for storing changes that the user would like to persist in every instance of the command line.
+
+One of the most common Environment Variables is:
+
+Key: `$HOME`
+
+Value: `/home/username`
+
+You can print the `/home/username` value to the command line using `echo $HOME`.
+
+Another common Environment Variable is:
+
+Key: `$PATH`
+
+Value: A list of directories which the shell uses to search for executable programs e.g. `/usr/local/bin`.
+
+You can print the list of directories using `echo $PATH`.
+
+You can add a directory to the list using one of the following:
+
+1. `export PATH=$PATH:$HOME/scripts`
+1. `export PATH=$HOME/scripts:$PATH`
+
+The first command will add `$HOME/scripts` to the end of the `$PATH` variable.
+
+The second command will add `$HOME/scripts` to the beginning of the `$PATH` variable.
+
+It is better to add new directories to the end of your path (first command) as the path is scanned in order from left to right. The first file to be executed will be the first executable file in the first directory. It's important to add new directories to the end to avoid accidentally overwriting built-in commands that your computer depends on.
+
+### Exporting Environment Variables to Sub Shells
+
+Sub shells can be created in the command line using the command `bash`. By default, these sub shells will not have access to (inherit) the variables of the shell they were created from.
+
+In the following example, a new variable called `a` is created and assigned the value of `learning-bash.sh` (line 1). The command to print the value of `a` is line 2 and the value of `a` is line 3. Line 4 creates a new sub shell. Line 5 calls print on value `a` and line 6 returns the value of `a` in the sub shell.
+
+```
+1    a=learning-bash.sh
+2    echo $a
+3    learning-bash.sh
+4    bash
+5    echo $a
+6    
+```
+
+The following example begins in the same way as the one above, but just before the new sub shell is created (`bash`) we can use the command `export` followed by the name of the variable to extend the value of this variable to the sub shell. Then when we print the value of `a` (`echo $a`), the value of `a` defined in the original shell has been inherited by the sub shell.
+
+```
+1    a=learning-bash.sh
+2    echo $a
+3    learning-bash.sh
+4    export a
+5    bash
+6    echo $a
+7    learning-bash.sh
+```
+
+Note: In order for the value of `a` to be available in the sub shell, the sub shell must be created just after the variable has been exported.
+
+## `finally`
+
+After executing a `try` block, you can use `catch` to handle exceptions or `finally` (or both). Unlike `catch`, `finally` is used for making sure that the commands contained within it are executed, whether or not an exception has been thrown.
+
+The `finally` block can be used after a `try` block to make sure that all resources are automatically closed once the `try` block has been executed. However, using a `finally` block in this case allows any exception within the `finally` block to override any previous exceptions.
+
+The following example has a `try` block that contains `BufferedWriter`. `BufferedWriter` is a resource that needs to be closed once it has been used. After the `try` block has been executed, the `finally` block is called (if an exception has been thrown, the `catch` block is executed first).
+
+``` java
+ @Test
+    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
+        String home = System.getProperty("user.home");
+        String json = "{}";
+        try {
+            writer = new BufferedWriter(new FileWriter(home + "/.config/budjen/transactions.json"));
+            writer.write(json);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+```
+
+Traditionally you'd use a `finally` block to close any resources you needed in the `try {}`, but since Java 7 you can put a variable declaration inside `try () {}` to automatically call `close()` on this variable (so no `finally` is required).
+
+``` java
+    @Test
+    public void whenWriteStringUsingBufferedWriter_thenCreateFile() {
+        final String dir = System.getProperty("user.home") + "/.test/budjen/";
+        new File(dir).mkdirs();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dir + "transactions.json"))) {
+            writer.write("{}");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+```
+
+## Stack Overflow
+
+Stack Overflow is an online community where programmers of all abilities can share their knowledge, learn new skills and look for new opportunites.
+
+Programmers can build reputation points by asking questions and providing answers. They can use these reputation points to offer bounties to increase the likelihood of receiving useful answers to their questions.
+
+## Locally running `checkstyle` in the command line
+
+To run checkstyle in the command line when using a Gradle build tool, use the commands
+
+`./gradlew checkstyleMain`
+
+or
+
+`./gradlew checkstyleTest`
+
+This is because build tools assume applications will be built using the conventional building structure of main and test.
+
+You can create a `./gradlew checkstyle` command using the following:
+
+```
+task checkstyle {
+    dependsOn(checkstyleMain, checkstyleTest)
+}
+```
