@@ -1972,3 +1972,243 @@ task checkstyle {
     dependsOn(checkstyleMain, checkstyleTest)
 }
 ```
+
+## TDD with Fibonacci
+
+As with all Test Driven Development, the key things to remember are:
+
+1. Red: Write as little code as possible to make your test fail.
+1. Green: Write as little code as possible to make your test pass.
+1. Refactor: Optimise your code for readability without changing its behaviour.
+
+First, create a test class that calls the intended target class:
+
+``` java
+public class FibonacciTest {
+    
+    Fibonacci target = new Fibonacci();
+
+}
+```
+
+Then create that target class.
+
+``` java
+public class Fibonacci {
+}
+```
+
+Second, add a simple method to the test class.
+
+``` java
+public class FibonacciTest {
+
+    public void shouldBe() {
+        Fibonacci target = new Fibonacci();
+        target.get(0);
+    }
+
+}
+```
+
+Then create the method `get` in the target class.
+
+``` java
+public class Fibonacci {
+
+    public int get() {
+        return 0;
+    }
+    
+}
+```
+
+Third, create a simple test in the test class.
+
+``` java
+import static org.junit.Assert.assertEquals;
+
+public class FibonacciTest {
+
+    @Test
+    public void shouldBe() {
+        Fibonacci target = new Fibonacci();
+        assertEquals(1,target.get());
+    }
+
+}
+```
+
+Then modify the method in the target class.
+
+``` java
+public class Fibonacci {
+
+    public int get() {
+        return 1;
+    }
+    
+}
+```
+
+Fourth, add more tests/assertions to the test class.
+
+``` java
+import static org.junit.Assert.assertEquals;
+
+public class FibonacciTest {
+
+    @Test
+    public void shouldBe() {
+        Fibonacci target = new Fibonacci();
+        assertEquals(1,target.get());
+        assertEquals(3,target.get());
+    }
+
+}
+```
+
+Then update the target class.
+
+``` java
+public class Fibonacci {
+
+    public int get(int n) {
+        if (n < 3) {
+            return 1;
+        }
+        return 2;
+    }
+}
+```
+
+There is now a lot of refactoring that can be done to the test class.
+
+A target field can be created, as can a private method called `shouldBe()`.
+
+Then further tests/assertions can be added.
+
+``` java
+import static org.junit.Assert.assertEquals;
+
+public class FibonacciTest {
+
+    Fibonacci target = new Fibonacci();
+
+    @Test
+    public void shouldBe1() {
+        shouldBe(1, 1);
+    }
+
+    @Test
+    public void shouldBe2() {
+        shouldBe(2, 1);
+    }
+
+    @Test
+    public void shouldBe3() {
+        shouldBe(3, 2);
+    }
+
+    @Test
+    public void shouldBe4() {
+        shouldBe(4, 3);
+    }
+
+    @Test
+    public void shouldBe5() {
+        shouldBe(5, 5);
+    }
+
+    private void shouldBe(int index, int expected) {
+        assertEquals(expected, target.get(index));
+    }
+}
+```
+
+Finally, update the target class so that it will work for any number tested.
+
+``` java
+public class Fibonacci {
+
+    int get(int n) {
+        if (n < 3) {
+            return 1;
+        }
+        return get(n - 2) + get(n - 1);
+    }
+}
+```
+
+## FizzBuzz
+
+Applicants for junior developer roles are commonly asked to demonstrate on a whiteboard how they would create a class to solve the following problem (sometimes also as a TDD exercise):
+
+For every number from 1 - 100, print "Fizz" if the number is divisible by 3, "Buzz" if it is divisible by 5, "FizzBuzz" if it is divisible by 3 and 5, and if none of these apply print the actual number.
+
+FizzBuzz class:
+
+``` java
+public class FizzBuzz {
+
+    public static void main (String[] s) {
+        for(int i=1; i<=100; i++) {
+            System.out.println(new FizzBuzz().get(i));
+        }
+    }
+
+    public String get(int n) {
+        if(n%15 == 0) {
+            return "FizzBuzz";
+        }
+        if(n%3 == 0) {
+            return "Fizz";
+        }
+        if(n%5 == 0) {
+            return "Buzz";
+        }
+        return "" + n;
+    }
+}
+```
+
+FizzBuzz test class:
+
+``` java
+public class FizzBuzzTest {
+    
+    private FizzBuzz target = new FizzBuzz();
+
+    @Test
+    public void givenOne_shouldReturnOne() {
+        assertEquals("1", target.get(1));
+        assertEquals("2", target.get(2));
+        assertEquals("Fizz", target.get(3));
+        assertEquals("Buzz", target.get(5));
+        assertEquals("Fizz", target.get(6));
+        assertEquals("Buzz", target.get(10));
+        assertEquals("FizzBuzz", target.get(15));
+        assertEquals("FizzBuzz", target.get(30));
+    }
+}
+```
+
+## Retrospectives
+
+Retrospectives are great for assessing how team projects are going. They are normally done at the end of a sprint, but can be used to review any defined period of time.
+
+Retrospectives are made up of three parts:
+
+1. What did we do well?
+1. What could we have done better?
+1. How will we action these improvements?
+
+For each question, the group will brainstorm ideas. Remember, don't make it personal and don't assign blame.
+
+## Kata
+
+A Japanese word meaning "form", relating to karate. Used commonly in programming to mean practising and repeating the form of something to master it.
+
+An excellent example of a Test Driven Development Kata:
+
+http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata
