@@ -2003,9 +2003,10 @@ Second, add a simple method to the test class.
 ``` java
 public class FibonacciTest {
 
-    public void shouldBe() {
-        Fibonacci target = new Fibonacci();
-        target.get(0);
+    Fibonacci target = new Fibonacci();
+
+    public int shouldBe(int i) {
+        target.get(i);
     }
 
 }
@@ -2030,10 +2031,11 @@ import static org.junit.Assert.assertEquals;
 
 public class FibonacciTest {
 
+    Fibonacci target = new Fibonacci();
+
     @Test
-    public void shouldBe() {
-        Fibonacci target = new Fibonacci();
-        assertEquals(1,target.get());
+    public int shouldBe(int i) {
+        assertEquals(1,target.get(i));
     }
 
 }
@@ -2058,17 +2060,41 @@ import static org.junit.Assert.assertEquals;
 
 public class FibonacciTest {
 
+    Fibonacci target = new Fibonacci();
+
     @Test
-    public void shouldBe() {
-        Fibonacci target = new Fibonacci();
-        assertEquals(1,target.get());
-        assertEquals(3,target.get());
+    public int shouldBe(int i) {
+        assertEquals(1,target.get(i));
+        assertEquals(3,target.get(i));
     }
 
 }
 ```
 
-Then update the target class.
+Then refactor the test class.
+
+A private method called `shouldBe()` can be created.
+
+``` java
+import static org.junit.Assert.assertEquals;
+
+public class FibonacciTest {
+
+    Fibonacci target = new Fibonacci();
+
+    @Test
+    public int shouldBe(int i) {
+        shouldBe(1, 1);
+        shouldBe(3, 2);
+    }
+
+    private int shouldBe(int index, int expected) {
+        assertEquals(expected, target.get(index));
+    }
+}
+```
+
+Now we can update the target class.
 
 ``` java
 public class Fibonacci {
@@ -2082,11 +2108,7 @@ public class Fibonacci {
 }
 ```
 
-There is now a lot of refactoring that can be done to the test class.
-
-A target field can be created, as can a private method called `shouldBe()`.
-
-Then further tests/assertions can be added.
+Then further tests/assertions can be added to the test class.
 
 ``` java
 import static org.junit.Assert.assertEquals;
@@ -2096,31 +2118,15 @@ public class FibonacciTest {
     Fibonacci target = new Fibonacci();
 
     @Test
-    public void shouldBe1() {
+    public int shouldBe(int i) {
         shouldBe(1, 1);
-    }
-
-    @Test
-    public void shouldBe2() {
         shouldBe(2, 1);
-    }
-
-    @Test
-    public void shouldBe3() {
         shouldBe(3, 2);
-    }
-
-    @Test
-    public void shouldBe4() {
         shouldBe(4, 3);
-    }
-
-    @Test
-    public void shouldBe5() {
         shouldBe(5, 5);
     }
 
-    private void shouldBe(int index, int expected) {
+    private int shouldBe(int index, int expected) {
         assertEquals(expected, target.get(index));
     }
 }
@@ -2142,7 +2148,7 @@ public class Fibonacci {
 
 ## FizzBuzz
 
-Applicants for junior developer roles are commonly asked to demonstrate on a whiteboard how they would create a class to solve the following problem (sometimes also as a TDD exercise):
+Applicants for developer roles are commonly asked to demonstrate on a whiteboard how they would create a class to solve the following problem (sometimes also as a TDD exercise):
 
 For every number from 1 - 100, print "Fizz" if the number is divisible by 3, "Buzz" if it is divisible by 5, "FizzBuzz" if it is divisible by 3 and 5, and if none of these apply print the actual number.
 
@@ -2180,7 +2186,7 @@ public class FizzBuzzTest {
     private FizzBuzz target = new FizzBuzz();
 
     @Test
-    public void givenOne_shouldReturnOne() {
+    public void given_shouldReturn() {
         assertEquals("1", target.get(1));
         assertEquals("2", target.get(2));
         assertEquals("Fizz", target.get(3));
@@ -2195,13 +2201,13 @@ public class FizzBuzzTest {
 
 ## Retrospectives
 
-Retrospectives are great for assessing how team projects are going. They are normally done at the end of a sprint, but can be used to review any defined period of time.
+Retrospectives are great for assessing how team projects are going. They are normally done at the end of a sprint, but can be used to review any defined period of time. To get the best value from them, you would hold them at the end of a sprint or longer period of time.
 
 Retrospectives are made up of three parts:
 
 1. What did we do well?
 1. What could we have done better?
-1. How will we action these improvements?
+1. Any ideas for improvements?
 
 For each question, the group will brainstorm ideas. Remember, don't make it personal and don't assign blame.
 
@@ -2211,4 +2217,4 @@ A Japanese word meaning "form", relating to karate. Used commonly in programming
 
 An excellent example of a Test Driven Development Kata:
 
-http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata
+[The Bowling Game](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata)
