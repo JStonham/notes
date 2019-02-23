@@ -2218,3 +2218,87 @@ A Japanese word meaning "form", relating to karate. Used commonly in programming
 An excellent example of a Test Driven Development Kata:
 
 [The Bowling Game](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata)
+
+## Coding in the Command Line
+
+The Command Line provides the ability to write code in different languages.
+
+For example, if you write `python` into the command line and press enter you can then write the following:
+
+``` python
+def fib(n):
+    if n<3:
+        return n
+    return fib(n-1) + fib(n-2)
+```
+
+Getting the indentations right is very important as Python does not have brackets for if statements.
+
+You can then enter `fib(4)` and the command line will return `5`, or `fib(8)` and `34` will be returned.
+
+## Some different coding languages and their usages
+
+### MatLab (Matrix Laboratory)
+Good for matrices and vectors, which are the key components of linear algebra.
+
+### R
+Good for Statistics.
+
+### Python
+Good for anything, but especially useful for Machine Learning. Python had a major release to 3.0 at the end of 2008, but some software still uses 2.6 or 2.7 as it cannot handle the breaking changes.
+
+### Java
+Good for anything. Originally comes from Oracle Java, but was taken by developers and made into the open-source Java Development Kit (JDK). Oracle Java is almost the same as JDK.
+
+### Access to Software
+
+Some software is proprietary, others are open source and some are even free.
+
+#### Proprietary
+
+Owned by a company. Users are required to purchase a license. Examples include MatLab.
+
+#### Open Source
+
+The source code is made available by the copyright holder under a license that allows users to change and distribute the code. Exampes include Python and OpenJDK.
+
+#### Free
+
+Free as in freedom, not free as in beer. The code is made available for users to change and distribute. Examples include the Linux kernal.
+
+## NoSQL Databases
+
+NoSQL generally means anything but SQL, although some NoSQL databases can support SQL (e.g. postgreSQL).
+
+- Mongo. Documents are written in JSON. Can have as many fields/columns as you want. Allows as many connections as needed.
+
+- Cassandra. Similar to Mongo.
+
+- Redis. Similar to Maps in Java in that it is made up of keys and values. Processes are performed sequentially rather than all at once, but as it is done in RAM it is very performant. Good at keeping data in RAM and retrieving previously calculated values that won't change. High risk of errors if values can change and need to be recalculated.
+
+## Basic Computer Structure
+
+The most important part of a computer is the motherboard. The motherboard contains the Central Processing Unit (CPU). Whilst the computer is on, the CPU will always be running (even if it is just waiting for the next mouse movement).
+
+Some computers will have a Graphical Processing Unit (GPU), which is very useful for games.
+
+Another important component that is connected to the motherboard is the Random Access Memory (RAM). The RAM is the short-term memory that holds the necessary components for computers to operate in the moment.
+
+Cache is really short-term, local memory found in the CPU, GPU and hard drive. It is useful for really quick access of data. The hard drive and the GPU generally have more cache than the CPU.
+
+The hard drive provides the ability for persistent storage.
+
+When talking about computer memory, the following numbers are useful:
+
+```
+bit
+byte
+8 bit = 1 byte
+
+Kilo  -  1,000
+Mega  -  1,000,000
+Giga  -  1,000,000,000
+Tera  -  1,000,000,000,000
+Peta  -  1,000,000,000,000,000
+Exa   -  1,000,000,000,000,000,000
+```
