@@ -2221,7 +2221,7 @@ An excellent example of a Test Driven Development Kata:
 
 ## Coding in the Command Line
 
-The Command Line provides the ability to write code in different languages.
+The Command Line is an example of a Read-Evaluate-Print-Loop (REPL). Users can enter expressions which will be read, evaluated and the answer printed to the screen. The environment will then return to the read state. This provides the ability to enter single expressions in different programming languages (once you have installed the program and called it from the command line). This ability can be useful for testing simple concepts or debugging.
 
 For example, if you write `python` into the command line and press enter you can then write the following:
 
