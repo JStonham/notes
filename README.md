@@ -2248,7 +2248,7 @@ Good for Statistics.
 Good for anything, but especially useful for Machine Learning. Python had a major release to 3.0 at the end of 2008, but some software still uses 2.6 or 2.7 as it cannot handle the breaking changes.
 
 ### Java
-Good for anything. Originally comes from Oracle Java, but was taken by developers and made into the open-source Java Development Kit (JDK). Oracle Java is almost the same as JDK.
+Good for anything. Originally comes from Oracle Java Development Kit (Oracle JDK), but was taken by developers and made into Open JDK (open-source). Oracle JDK is almost the same as Open JDK. As of Java 1.11, there's only one JDK.
 
 ### Access to Software
 
@@ -2264,17 +2264,17 @@ The source code is made available by the copyright holder under a license that a
 
 #### Free
 
-Free as in freedom, not free as in beer. The code is made available for users to change and distribute. Examples include the Linux kernal.
+Free as in freedom, not just free as in beer. The code is made available for users to change and distribute. Examples include the Linux kernel.
 
 ## NoSQL Databases
 
-NoSQL generally means anything but SQL, although some NoSQL databases can support SQL (e.g. postgreSQL).
+NoSQL generally means "not only SQL", as most noSQL databases don't use SQL (e.g. Mongo, Redis), but there are some NoSQL databases do support SQL (e.g. postgreSQL).
 
-- Mongo. Documents are written in JSON. Can have as many fields/columns as you want. Allows as many connections as needed.
+- Mongo. Documents are written in a JSON-like syntax called BSON. Can have as many fields/columns as you want. Allows *many* connections.
 
 - Cassandra. Similar to Mongo.
 
-- Redis. Similar to Maps in Java in that it is made up of keys and values. Processes are performed sequentially rather than all at once, but as it is done in RAM it is very performant. Good at keeping data in RAM and retrieving previously calculated values that won't change. High risk of errors if values can change and need to be recalculated.
+- Redis. Similar to Maps in Java in that it is made up of keys and values. Processes are performed sequentially rather than concurrently, but as it is done in RAM it is still very performant. Good at keeping data in RAM and retrieving previously calculated values that won't change.
 
 ## Basic Computer Structure
 
@@ -2295,10 +2295,10 @@ bit
 byte
 8 bit = 1 byte
 
-Kilo  -  1,000
-Mega  -  1,000,000
-Giga  -  1,000,000,000
-Tera  -  1,000,000,000,000
-Peta  -  1,000,000,000,000,000
-Exa   -  1,000,000,000,000,000,000
+Kilo  -  1,024
+Mega  -  1,048,576
+Giga  -  1,073,741,824
+Tera  -  1,099,511,627,776
+Peta  -  1,125,899,906,842,624
+Exa   -  1,152,921,504,606,847,000
 ```
