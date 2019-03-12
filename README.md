@@ -2218,3 +2218,87 @@ A Japanese word meaning "form", relating to karate. Used commonly in programming
 An excellent example of a Test Driven Development Kata:
 
 [The Bowling Game](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata)
+
+## Coding in the Command Line
+
+The Command Line is an example of a Read-Evaluate-Print-Loop (REPL). Users can enter expressions which will be read, evaluated and the answer printed to the screen. The environment will then return to the read state. This provides the ability to enter single expressions in different programming languages (once you have installed the program and called it from the command line). This ability can be useful for testing simple concepts or debugging.
+
+For example, if you write `python` into the command line and press enter you can then write the following:
+
+``` python
+def fib(n):
+    if n<3:
+        return n
+    return fib(n-1) + fib(n-2)
+```
+
+Getting the indentations right is very important as Python does not have brackets for if statements.
+
+You can then enter `fib(4)` and the command line will return `5`, or `fib(8)` and `34` will be returned.
+
+## Some different coding languages and their usages
+
+### MatLab (Matrix Laboratory)
+Good for matrices and vectors, which are the key components of linear algebra.
+
+### R
+Good for Statistics.
+
+### Python
+Good for anything, but especially useful for Machine Learning. Python had a major release to 3.0 at the end of 2008, but some software still uses 2.6 or 2.7 as it cannot handle the breaking changes.
+
+### Java
+Good for anything. Originally comes from Oracle Java Development Kit (Oracle JDK), but was taken by developers and made into Open JDK (open-source). Oracle JDK is almost the same as Open JDK. As of Java 1.11, there's only one JDK.
+
+### Access to Software
+
+Some software is proprietary, others are open source and some are even free.
+
+#### Proprietary
+
+Owned by a company. Users are required to purchase a license. Examples include MatLab.
+
+#### Open Source
+
+The source code is made available by the copyright holder under a license that allows users to change and distribute the code. Exampes include Python and OpenJDK.
+
+#### Free
+
+Free as in freedom, not just free as in beer. The code is made available for users to change and distribute. Examples include the Linux kernel.
+
+## NoSQL Databases
+
+NoSQL generally means "not only SQL", as most noSQL databases don't use SQL (e.g. Mongo, Redis), but there are some NoSQL databases do support SQL (e.g. postgreSQL).
+
+- Mongo. Documents are written in a JSON-like syntax called BSON. Can have as many fields/columns as you want. Allows *many* connections.
+
+- Cassandra. Similar to Mongo.
+
+- Redis. Similar to Maps in Java in that it is made up of keys and values. Processes are performed sequentially rather than concurrently, but as it is done in RAM it is still very performant. Good at keeping data in RAM and retrieving previously calculated values that won't change.
+
+## Basic Computer Structure
+
+The most important part of a computer is the motherboard. The motherboard contains the Central Processing Unit (CPU). Whilst the computer is on, the CPU will always be running (even if it is just waiting for the next mouse movement).
+
+Some computers will have a Graphical Processing Unit (GPU), which is very useful for games.
+
+Another important component that is connected to the motherboard is the Random Access Memory (RAM). The RAM is the short-term memory that holds the necessary components for computers to operate in the moment.
+
+Cache is really short-term, local memory found in the CPU, GPU and hard drive. It is useful for really quick access of data. The hard drive and the GPU generally have more cache than the CPU.
+
+The hard drive provides the ability for persistent storage.
+
+When talking about computer memory, the following numbers are useful:
+
+```
+bit
+byte
+8 bit = 1 byte
+
+Kilo  -  1,024
+Mega  -  1,048,576
+Giga  -  1,073,741,824
+Tera  -  1,099,511,627,776
+Peta  -  1,125,899,906,842,624
+Exa   -  1,152,921,504,606,847,000
+```
