@@ -605,6 +605,8 @@ Command | description
 
 `rm`  | ReMove file - be VERY careful with this one, as files do not end up in the trash and are gone forever!
 
+`sudo apt-get install` | Allows users to download most apps. Command must be followed by the name of the app.
+
 Concept | description
 ----------------------
 `/`  | the 'root' directory. The highest directory you can navigate to; all other directories on your computer are somewhere beneath this one
@@ -2302,3 +2304,63 @@ Tera  -  1,099,511,627,776
 Peta  -  1,125,899,906,842,624
 Exa   -  1,152,921,504,606,847,000
 ```
+
+## Databases and Indices
+
+MongoDB is the most popular document-based database. It allows several databases which can be used for test, live etc.
+
+MongoDB is made up of collections of documents and fields. All documents must have IDs, but any other fields are optional.
+
+IDs in Mongo are automatically Object IDs. These IDs have a lot of power and contain a lot of information, such as when the document was created. The user can override the generated ID with a specific ID if required.
+
+### Useful MongoDB commands
+
+- `show dbs` - shows all available databases
+- `use` followed by database name - chooses the database the user would like to work on
+- `show collections` - shows the documents
+- `cls` - clears the screen
+- `COLLSCAN` - scans the collections
+- `IXSCAN` - index scan
+- `mongo --help | grep log` - prints lines containing the specified log
+- `|` - (pipe) allows users to include the output of one function as the input of another function
+
+If you had a collection called people:
+- `db.people.insert({})` - inserts a document in the JSON format
+- `db.people.count()` - counts the number of documents
+- `db.people.find()` - finds all documents that meet whatever criteria is put into the brackets
+- `db.people.findOne()` - finds one document that meets whatever criteria is put into the brackets
+- `db.people.find().pretty()` - finds all documents that meet whatever criteria is put into the brackets and prints it to the screen in a readable format
+- `db.people.find().explain()` - way for the user to ask the database to explain how it found the data
+
+If you wanted to find all people with the names Luke and/or Wendy:
+`db.people.find({$or:[{name:"Luke"},{name:"Wendy"}]})`
+
+If you wanted to find all people with the names Luke and/or Wendy and sort them in ascending order:
+`db.people.find({$or:[{name:"Luke"},{name:"Wendy"}]}).sort({name:1})`
+
+#### Creating Indices in MongoDB
+
+If the collection name is people, then `db.people.createIndex({name})` can be used to create a new index based on people's names.
+
+The command `db.people.createIndex({name:-1})` would create an index based on people's names in descending order (`-1` is for descending and `1` is for ascending order).
+
+Users can index any field and can create indices that have multiple parameters, but remember if you do that the order of these parameters matters!
+
+For example, if you had previously done `db.people.createIndex({points:1,name:1})` then doing `db.people.createIndex({points:1})` would not be useful as your existing index searches on points first.
+
+Likewise, if you had previously done `db.people.createIndex({points:1,name:1,age:1})` then doing `db.people.createIndex({points:1,age:1})` would still be useful as the first index searches by points, then name and then age rather than by points and then age.
+
+Indices are generally stored in RAM, which is partly why they are so performant. As indices are stored in memory in Mongo it is wise not to create too many or any increase in performance will be negated.
+
+### Other Databases
+
+- Redis - stored in RAM so does not require indices as it's already very performant.
+- ElasticSearch - good at searching, but cannot store a large amount of data.
+
+## Creating Websites
+
+React is a JavaScript library for building user interfaces. It takes the backend state and turns it into a frontend view.
+
+Gatsby JavaScript Framework is a tool based on React that builds websites using only static files, which increases the speed the user can navigate through the resulting interface.
+
+Node.js provides the ability for programmers to write web servers using JavaScript. Node Package Manager (NPM)) is a command line interface for managing node modules.
