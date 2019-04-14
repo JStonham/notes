@@ -2302,3 +2302,29 @@ Tera  -  1,099,511,627,776
 Peta  -  1,125,899,906,842,624
 Exa   -  1,152,921,504,606,847,000
 ```
+
+## Machine Code and Bytecode
+
+Different operating systems require different machine code. Machine code is a computer program that contains a set of instructions which can be directly executed by a computer's central processing unit (CPU).
+
+Bytecode is a layer that sits between programming languages (source code) and machine code and translates the source code into instructions that the CPU can follow.
+
+Java has made use of bytecode in the Java Virtual Machine (JVM), which allows any operating system with JVM to understand bytecode.
+
+## Compiler and Interpreter Languages
+
+Compiler languages take the entirety of the source code at once and convert it into machine code.
+
+Interpreter languages convert source code line-by-line into machine code.
+
+Compiler languages are faster to execute as the source code will have already been turned into machine code whilst it is being developed.
+
+Examples:
+
+| Compiler | Interpreter |
+| -------- | ----------- |
+| Java (to bytecode) | Ruby |
+|    Go    |   Python    |
+|    C     | JavaScript  |
+| C# (to bytecode) | Bash |
+
