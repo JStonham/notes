@@ -2526,23 +2526,23 @@ MongoDB is made up of collections of documents and fields. All documents must ha
 
 IDs in Mongo are automatically Object IDs. These IDs have a lot of power and contain a lot of information, such as when the document was created. The user can override the generated ID with a specific ID if required.
 
+Documents in Mongo are queried using strategies such as `COLLSCAN` (collection scan) and `IXSCAN` (index scan). These are not commands; they identify the strategy used for querying documents.
+
 ### Useful MongoDB commands
 
 - `show dbs` - shows all available databases
 - `use` followed by database name - chooses the database the user would like to work on
 - `show collections` - shows the documents
 - `cls` - clears the screen
-- `COLLSCAN` - scans the collections
-- `IXSCAN` - index scan
-- `mongo --help | grep log` - prints lines containing the specified log
+- `mongo --help | grep log` - prints only the lines containing `log` from the output of `mongo --help`.
 - `|` - (pipe) allows users to include the output of one function as the input of another function
 
 If you had a collection called people:
-- `db.people.insert({})` - inserts a document in the JSON format
+- `db.people.insert({})` - inserts a document in the JSON format, which includes fields e.g. name.
 - `db.people.count()` - counts the number of documents
 - `db.people.find()` - finds all documents that meet whatever criteria is put into the brackets
 - `db.people.findOne()` - finds one document that meets whatever criteria is put into the brackets
-- `db.people.find().pretty()` - finds all documents that meet whatever criteria is put into the brackets and prints it to the screen in a readable format
+- `db.people.find().pretty()` - finds all documents that meet whatever criteria is put into the brackets and pretty prints it (prints it to the screen in a readable format)
 - `db.people.find().explain()` - way for the user to ask the database to explain how it found the data
 
 If you wanted to find all people with the names Luke and/or Wendy:
@@ -2557,7 +2557,7 @@ If the collection name is people, then `db.people.createIndex({name})` can be us
 
 The command `db.people.createIndex({name:-1})` would create an index based on people's names in descending order (`-1` is for descending and `1` is for ascending order).
 
-Users can index any field and can create indices that have multiple parameters, but remember if you do that the order of these parameters matters!
+Users can index any field and can create compound indices (indices that have multiple parameters), but remember if you do that the order of these parameters matters!
 
 For example, if you had previously done `db.people.createIndex({points:1,name:1})` then doing `db.people.createIndex({points:1})` would not be useful as your existing index searches on points first.
 
@@ -2568,7 +2568,7 @@ Indices are generally stored in RAM, which is partly why they are so performant.
 ### Other Databases
 
 - Redis - stored in RAM so does not require indices as it's already very performant.
-- ElasticSearch - good at searching, but cannot store a large amount of data.
+- ElasticSearch - useful for searching. As programmers generally use it to speed up searching, they tend to only store the search-related data here.
 
 ## Creating Websites
 
