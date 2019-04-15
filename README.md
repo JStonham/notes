@@ -2221,6 +2221,219 @@ An excellent example of a Test Driven Development Kata:
 
 [The Bowling Game](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata)
 
+## Practice Interview Questions
+
+### Markdown
+
+- Easy: How do you write bullet points in Markdown?
+- Medium: How do you write check boxes in Markdown? If you write this correctly, and it still doesn't work, what do you think is the issue? (There are different flavours of Markdown and the GitHub version has some differences).
+- Hard: How do you write a table in Markdown?
+
+### Git
+
+- Easy: Assume you've changed a file called `MyClass.java` in a repo your computer. Walk me through the steps of how to get that change to show up on GitHub.
+- Medium: How do you discard all the changed files on your current branch locally. Including completely new files?
+- Hard: Suppose you've accidentally pushed to master. How can you undo that change, but keep all the work on a separate branch. Walk me through all the steps.
+
+### Bash
+
+- Easy: What does the `cat` command do?
+- Medium: What is the $PATH variable?
+- Hard: How can you make it so that whenever you execute 'check', you run both checkstyle and all the tests of the gradle project you're currently in.
+
+### OOP
+
+- Easy: What is inheritance?
+- Medium: What are the downsides of using inheritance?
+- Hard: How can you replace a switch statement with polymorphism?
+
+### TDD:
+
+- Easy: What are the 'Red/Green/Refactor' steps?
+- Medium: What are the benefits of TDD?
+- Hard: What are the downsides of TDD?
+
+### Design
+
+- Easy: What is the difference between design and documentation? How are they similar?
+- Medium: Describe a design process you think will work for a software project.
+- Hard: What concerns do you have to keep in mind when working on a team that is working on several projects at the same time.
+
+## Internet Browsers
+
+There are 3 languages that form what we see when we look at internet browsers.
+
+HTML (Hypertext Markup Language) forms the structure of web pages.
+CSS (Cascading Style Sheets) forms the style.
+JavaScript provides the dynamic and interactive parts.
+
+### JavaScript
+
+JavaScript started as a browser language, but now it is used for a variety of things including: Slack, Facebook Messenger, Web Servers and Applications.
+
+When using JavaScript outside of the browser you generally use Node.js.
+
+JavaScript does not have a compile-time type system, and as such it does not have type safety. Microsoft addressed the issues of this by creating TypeScript, which includes all the capabilities of JavaScript and additionally includes types.
+
+#### A Brief History of JavaScript
+
+Brendan Ike wrote ECMAScript (known widely as JavaScript, although it has no relation to Java) in 14 days. Whilst this is an incredibly impressive achievement, the language was dogged with problems until 2015. Part of the issue was that the problems couldn’t be changed as internet sites depended on it and needed it to have backwards compatibility.
+
+The evolution of evergreen browsers meant that it was possible for a new version, ES6, of JavaScript to be released in 2015. One of the differences is that JavaScript variables used to be symbolised as `var` and now it is `let`, or `const` if the variable shouldn’t change.
+
+### JavaScript Data Types
+
+- String
+- Date
+- Number
+- Boolean
+- Functions
+- null
+- undefined
+- Array
+- Object
+
+### HTML
+
+HTML is not a programming language. It does have classes and IDs for referencing components that programmers wish to reassign. IDs must be assigned only once whereas classes can be assigned to multiple elements (e.g. if programmers want many aspects to have the same formatting).
+
+HTML and pictures have been combined to create Scalar Vector Graphics (SVG).
+
+In very broad terms, the basic format for HTML is:
+
+``` html
+<html>
+<head>
+Put links to dependencies here.
+</head>
+<body>
+Put content you want users to see here.
+</body>
+</html>
+```
+
+#### HTML Symbols
+
+| Symbol | Definition |
+| ------ | ---------- |
+| `<p>`  | paragraph  |
+| `<b>`  |   body     |
+| `<div>` | defines a division or section |
+| `<!-- -->` | comments in the middle of symbol |
+
+#### HTML vs Markdown 
+
+| Markdown | HTML |
+| -------- | ---- |
+|  `#`  | `<h1>` |
+|  `-`  | `<ul> <li> text goes here </li> </ul>` |
+|  `1.` | `<ol> <li> text goes here </li> </ol>` |
+| backtick | `<pre>` |
+| ` ```java ` | `<pre><code></code></pre>` |
+| `**` | `<b>` |
+
+## Functional Programming with JavaScript
+
+Functional Programming is the combination of declarative coding (telling code what you want it to do (as opposed to *how* to do it)) and immutable (unchangeable) data.
+
+JavaScript allows programmers pass functions into other functions.
+
+In the example below, values are assigned to the functions `a`, `b`, and `c` and these functions are then put into the function `i`.
+
+``` javascript
+let a = undefined;
+let b = null;
+let c = "";
+let d = new Date();
+let e = 1;
+let f = false;
+let g = ["g",1];
+let h = {h: "foo"};
+let i = function(a,b,c) {
+    console.log(a,b,c);
+}
+```
+
+An example of a variable within a function:
+
+```javascript
+let j = function(myVar) {
+    myVar("hello")
+}
+```
+
+In JavaScript, although you can use the classic for-loop with an index variable, most people use `forEach`:
+
+The following example assigns 5 numbers to an array, then filters that array to return only even numbers. Then the even numbers are assigned to `foo` and printed. Lastly, the entire array is printed.
+
+```javascript
+let array = [1,2,4,6,7]
+
+array.filter(function(n){ return n % 2 === 0}) // classic function
+    .map(n => "foo: " + n) // arrow function
+    .forEach(n => console.log(n))
+```
+
+In strict functional programming, you should never change the nature of an array once it's been defined (e.g. once `array =` you should never write `array =` again in that code). The benefit of doing so is that all the state of your application can never change from underneath you and introduce confusing bugs.
+
+The example below shows the classic FizzBuzz in JavaScript.
+
+```javascript
+for(let i = 1; i <= 100; i++){
+    if(i % 15 === 0) {
+        console.log("FizzBuzz");   
+    } else if(i % 3 === 0) {
+        console.log("Fizz");  
+    } else if(i % 5 === 0) {
+        console.log("Buzz");
+    } else {
+        console.log(i);
+    }
+}
+```
+
+This could also be done as using an array. You can add to arrays using `push`.
+
+```javascript
+let a = []
+for(let i = 1; i <= 100; i++){
+    a.push(i)
+}
+
+a.map(i => {
+    if (i % 15 === 0) {
+        return "FizzBuzz"
+    }
+    if (i % 5 === 0) {
+        return "Buzz"
+    }
+    if (i % 3 === 0) { 
+        return "Fizz"
+    }
+    return i
+}).forEach(i => console.log(i))
+```
+
+## Program Complexity
+
+Order = the rate of growth of a function.
+
+| Order | Time |
+| ----- | ---- |
+| O(1) | very fast |
+| O(log n) | fast |
+| O(nlog n) | fairly fast |
+| O(n) | fairly slow |
+| O(n<sup>2</sup>) | slow |
+| O(2<sup>n</sup>) | very slow |
+| O(n!) | don't bother |
+
+`O(n)` is the best of the above options for searching unsorted lists.
+
+`O(log n)` is the best of the above options for searching sorted lists.
+
+`O(log n)` needs only 20 look-ups to find a number in 1,000,000 as the fact that the list of numbers is ordered means that it can use The Binary Search technique.
+
 ## Coding in the Command Line
 
 The Command Line is an example of a Read-Evaluate-Print-Loop (REPL). Users can enter expressions which will be read, evaluated and the answer printed to the screen. The environment will then return to the read state. This provides the ability to enter single expressions in different programming languages (once you have installed the program and called it from the command line). This ability can be useful for testing simple concepts or debugging.
