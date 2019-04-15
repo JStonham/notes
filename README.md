@@ -2269,9 +2269,9 @@ JavaScript provides the dynamic and interactive parts.
 
 JavaScript started as a browser language, but now it is used for a variety of things including: Slack, Facebook Messenger, Web Servers and Applications.
 
-The JavaScript execution engine is Node. No HTML is required, but CSS is.
+When using JavaScript outside of the browser you generally use Node.js.
 
-As JavaScript does not have types, it does not have type safety. Microsoft addressed the issues of this by creating TypeScript, which includes all the capabilities of JavaScript and additionally includes types.
+JavaScript does not have a compile-time type system, and as such it does not have type safety. Microsoft addressed the issues of this by creating TypeScript, which includes all the capabilities of JavaScript and additionally includes types.
 
 #### A Brief History of JavaScript
 
@@ -2293,11 +2293,11 @@ The evolution of evergreen browsers meant that it was possible for a new version
 
 ### HTML
 
-HTML is not a programming language. It does have classes and IDs for referencing components that programmers wish to reassign. IDs must be assigned only one value where as classes can have multiple values (e.g. if programmers want many aspects to have the same formatting).
+HTML is not a programming language. It does have classes and IDs for referencing components that programmers wish to reassign. IDs must be assigned only once whereas classes can be assigned to multiple elements (e.g. if programmers want many aspects to have the same formatting).
 
 HTML and pictures have been combined to create Scalar Vector Graphics (SVG).
 
-The basic format for HTML is:
+In very broad terms, the basic format for HTML is:
 
 ``` html
 <html>
@@ -2327,14 +2327,14 @@ Put content you want users to see here.
 |  `-`  | `<ul> <li> text goes here </li> </ul>` |
 |  `1.` | `<ol> <li> text goes here </li> </ol>` |
 | backtick | `<pre>` |
-| ` ```java | `<pre><code></code></pre>` |
+| ` ```java ` | `<pre><code></code></pre>` |
 | `**` | `<b>` |
 
 ## Functional Programming with JavaScript
 
-Functional Programming is the combination of declarative coding (telling code what you want it to do) and immutable (unchangeable) data.
+Functional Programming is the combination of declarative coding (telling code what you want it to do (as opposed to *how* to do it)) and immutable (unchangeable) data.
 
-JavaScript allows programmers to put the output of one function into another function.
+JavaScript allows programmers pass functions into other functions.
 
 In the example below, values are assigned to the functions `a`, `b`, and `c` and these functions are then put into the function `i`.
 
@@ -2360,7 +2360,7 @@ let j = function(myVar) {
 }
 ```
 
-In JavaScript, for loops become `forEach` and include a variable name.
+In JavaScript, although you can use the classic for-loop with an index variable, most people use `forEach`:
 
 The following example assigns 5 numbers to an array, then filters that array to return only even numbers. Then the even numbers are assigned to `foo` and printed. Lastly, the entire array is printed.
 
@@ -2370,11 +2370,9 @@ let array = [1,2,4,6,7]
 array.filter(function(n){ return n % 2 === 0}) // classic function
     .map(n => "foo: " + n) // arrow function
     .forEach(n => console.log(n))
-
-console.log(array);
 ```
 
-It's important to note that you should never change the nature of an array once it's been defined (e.g. once `array =` you should never write `array =` again in that code).
+In strict functional programming, you should never change the nature of an array once it's been defined (e.g. once `array =` you should never write `array =` again in that code). The benefit of doing so is that all the state of your application can never change from underneath you and introduce confusing bugs.
 
 The example below shows the classic FizzBuzz in JavaScript.
 
@@ -2414,23 +2412,23 @@ a.map(i => {
 }).forEach(i => console.log(i))
 ```
 
-## Computer Programming
+## Program Complexity
 
 Order = the rate of growth of a function.
 
 | Order | Time |
 | ----- | ---- |
-| O(1) | fast |
-| O(log n) |  `|` |
-| O(nlog n) | `|`  |
-| O(n) |  `|` |
-| O(n<sup>2</sup>) | `|`  |
-| O(2<sup>n</sup>) | `v`  |
-| O(n!) | slow |
+| O(1) | very fast |
+| O(log n) | fast |
+| O(nlog n) | fairly fast |
+| O(n) | fairly slow |
+| O(n<sup>2</sup>) | slow |
+| O(2<sup>n</sup>) | very slow |
+| O(n!) | don't bother |
 
-`O(n)` is used for searching unsorted lists.
+`O(n)` is the best of the above options for searching unsorted lists.
 
-`O(log n)` is used for searching sorted lists.
+`O(log n)` is the best of the above options for searching sorted lists.
 
 `O(log n)` needs only 20 look-ups to find a number in 1,000,000 as the fact that the list of numbers is ordered means that it can use The Binary Search technique.
 
