@@ -2518,6 +2518,31 @@ Peta  -  1,125,899,906,842,624
 Exa   -  1,152,921,504,606,847,000
 ```
 
+## Machine Code and Bytecode
+
+Different operating systems require different machine code. Machine code is a computer program that contains a set of instructions which can be directly executed by a computer's central processing unit (CPU).
+
+Bytecode is a layer that sits between programming languages (source code) and machine code and translates the source code into instructions that the CPU can follow.
+
+Java has made use of bytecode in the Java Virtual Machine (JVM), which allows any operating system with JVM to understand bytecode.
+
+## Compiled and Interpreted Languages
+
+Compiled languages take the entirety of the source code at once and convert it into machine code.
+
+Interpreted languages convert source code line-by-line into machine code.
+
+Compiled languages are faster to execute as the source code will have already been turned into machine code whilst it is being developed.
+
+Some languages have benefits of both compiled and interpreted languages, but on the whole fit into one category better, as with some of the below examples:
+
+| Compiled | Interpreted |
+| -------- | ----------- |
+| Java (to bytecode) | Ruby |
+|    Go    |   Python    |
+|    C     | JavaScript  |
+| C# (to bytecode) | Bash |
+
 ## Databases and Indices
 
 MongoDB is the most popular document-based database. It allows several databases which can be used for test, live etc.
@@ -2525,6 +2550,23 @@ MongoDB is the most popular document-based database. It allows several databases
 MongoDB is made up of collections of documents and fields. All documents must have IDs, but any other fields are optional.
 
 IDs in Mongo are automatically Object IDs. These IDs have a lot of power and contain a lot of information, such as when the document was created. The user can override the generated ID with a specific ID if required.
+
+This is how the structure of Mongo compares to SQL:
+
+| Mongo | SQL |
+| ----- | --- |
+| Collection | Table |
+| Document | Row |
+| Field | Column |
+
+Mongo is like other databases in that the following functions are available:
+
+Create  
+Read  
+Update  
+Delete
+
+Read, Update and Delete are all faster with indices.
 
 Documents in Mongo are queried using strategies such as `COLLSCAN` (collection scan) and `IXSCAN` (index scan). These are not commands; they identify the strategy used for querying documents.
 
@@ -2576,4 +2618,4 @@ React is a JavaScript library for building user interfaces. It takes the backend
 
 Gatsby JavaScript Framework is a tool based on React that builds websites using only static files, which increases the speed the user can navigate through the resulting interface.
 
-Node.js provides the ability for programmers to write web servers using JavaScript. Node Package Manager (NPM)) is a command line interface for managing node modules.
+Node.js provides the ability for programmers to write web servers using JavaScript. Node Package Manager (NPM) is a command line interface for managing node modules (a way of getting node applications such as VS Code and Atom).
