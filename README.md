@@ -2628,11 +2628,11 @@ Node.js provides the ability for programmers to write web servers using JavaScri
 
 ## A Simple Guide to How the Internet Works
 
-Clients' (computer with person using it) send requests to web servers (program or computer running program that is responding to the request) via a connection between their two ports.
+Clients (machines such as computers or web servers) send requests to web servers (program or computer running program that is responding to the request) via a connection between their two ports.
 
 ### HyperText Transfer Protocol (HTTP)
 
-The client to web server and back communications are in the form of Internet Protocols (IPs). Two of the more commonly known and used IPs are HyperText Transfer Protocol (HTTP) and HyperText Transfer Protocol Secure (HTTPS). HTTPS is HTTP with a layer of encryptions, which come from a Secure Socket Layer (SSL).
+The client to web server and back communications take the form of protocols, which are built on top of the Internet Protocol. Two of the more commonly known protocols are HyperText Transfer Protocol (HTTP) and HyperText Transfer Protocol Secure (HTTPS). HTTPS is HTTP with a layer of encryptions, which come from a Secure Socket Layer (SSL).
 
 HTTP and HTTPS always consist of a header and, depending on the method called, can also contain a body. The body can be written in JSON, HTML, JavaScript, CSS, XML etc.
 
@@ -2648,9 +2648,9 @@ Web servers are not required to follow these methods, and can use methods (e.g. 
 
 When sent from the client, methods such as `POST`, `PUT` and `PATCH` always consist of a header and a body (as the client needs to send the web server the data it wants to add or update).
 
-The `GET` method does not need a body when sent from the client as additional information can be included in the Uniform Resource Locator (URL).
+The `GET` method should not have a body when sent from the client as additional information can be included in the Uniform Resource Locator (URL).
 
-The body is sometimes referred to as the payload. The responses from the web server will always have a body.
+The body is sometimes referred to as the payload. The responses from the web server will typically have a body.
 
 The sender will specify how many bytes the body consists of. Generally each character is one byte, although some characters e.g. Chinese characters could be more than one byte. If the body received contains a smaller or larger number of bytes, then the receiver knows that the content could have been corrupted.
 
@@ -2672,32 +2672,43 @@ The client to web server communications are enabled by web browsers. Web browser
 
 URLs are signposts to web servers and usually consist of domains, resources and query parameters.
 
-The URL `https://www.amazon.com` is in the form of HTTPS and consists of three domains. `www` is a sub-domain of the `amazon` domain and `com` is the top level domain. Large companies such as Amazon will purchase all sub-domains and top level domains of their domain (e.g. `amazon`) so they can re-direct all potential customers to their main site.
+The URL `https://www.amazon.com` is in the form of HTTPS and consists of three domains. `www` is a sub-domain of the `amazon` domain and `com` is the top level domain. It's in the interest of companies to purchase a domain name with their brand name, and they will often try to purchase under as many top-level domains (such as <company>.com & <company>.io, and regional domains such as <company>.co.uk) as possible so they can re-direct all potential customers to their main site.
 
 The following is part of a URL of a Google search for cat videos:
 
 `https://www.google.com/search?client=ubuntu&channel=fs&ei=0Bq7XNmKEsj8kwXDyaC4Bg&q=cat+videos`
 
-It is in the form of HTTPS, with a sub-domain of `www`, a domain of `google` and a top level domain of `com`. This URL also has a resource and query parameters. The resource is `search`. Resources consist of nouns and/or IDs and always follow on straight after the domains. The query parameters begin with `?` and are added to with `&`.
+It is in the form of HTTPS, with a sub-domain of `www`, a domain of `google` and a top level domain of `com`.
+
+This URL also has a resource and query parameters. The resource is `search`. Resources consist of nouns and/or IDs and always follow on straight after the domains.
+
+The query parameters begin with `?` and are added to with `&`. Query parameters consist of key to value relationships that are created with the `=` sign. In the URL above, there are 4 query parameters:
+
+| Key | Value |
+| --- | ----- |
+| client | ubuntu |
+| channel | fs |
+| ei | 0Bq7XNmKEsj8kwXDyaC4Bg |
+| q | cat+videos |
 
 Resources and query parameters are useful for telling the web server what the client wants, especially if the method used does not contain a body e.g. `GET`.
 
-URL query parameters will sometimes contain Urchin Tracking Module (UTM) codes. UTM codes are used by Google Analytics to track the success of advertising campaigns. When a client using a web browser selects a link that redirects them to another browser, the UTM codes can record the source location, the location the client is redirected to, the type of marketing of the link and the keywords used in the search.
+URL query parameters will sometimes contain Urchin Tracking Module (UTM) codes. UTM codes are used by Google Analytics to track the success of advertising campaigns. When a client using a web browser selects a link that redirects them to another site, the UTM codes can record the source location, the location the client is redirected to, the type of marketing of the link and the keywords used in the search.
 
 ### Examples of Top Level Domains (TLDs)
 
-- `.com` - Used by a lot of American web browsers. Generally considered to be the best.
+- `.com` - Used by a lot of American web sites. Generally considered to be the best.
 - `.co.uk` - `.co` is for companies and in this case UK companies.
 - `.org` - Used by organisations.
 - `.gov` - Used by government organisations.
 - `.io` - Originally a country code for the British Indian Ocean Territory. Has become popular with start-up tech companies as the `io` can also stand for input/output.
-- `.no` - Used by Norwegian web browsers.
-- `.net` - Originally one of the cheaper TLDs so generally used by the less reputable browsers.
-- `.ru` - Used by Russian web browsers.
+- `.no` - Used by Norwegian web sites.
+- `.net` - Originally one of the cheaper TLDs so generally used by the less reputable sites.
+- `.ru` - Used by Russian web sites.
 
 ### IP Addresses
 
-Internet Protocol (IP) addresses are numbers assigned to each device which is connected to a computer network that uses an Internet Protocol for communication. IP addresses serve two main functions:
+Internet Protocol (IP) addresses are numbers assigned to each device which is connected to a computer network that uses the Internet Protocol for communication. IP addresses serve two main functions:
 
 1. Resource identification within the network.
 1. Providing a location for transferring data.
@@ -2720,7 +2731,7 @@ The port `443` always denotes a secure port. The HTTP port is `80` and the HTTPS
 
 The current IP versions are 4 and 6. IPv4 uses a 32-bit address scheme allowing for a total of 2<sup>32</sup> addresses (just over 4 billion addresses). With all devices that access the internet requiring IP addresses,  IPv4 does not have enough addresses. As a work-around, some IP addresses will take you to a network which will then have to forward the request on to the correct server.
 
-IPv6 uses a 128-bit address scheme allowing for a total of 2<sup>128</sup> addresses. IPv6 addresses consist of letters and numbers and are separated by colons e.g. `3ffe:1900:4545:3:200:f8ff:fe21:67cf`.
+IPv6 uses a 128-bit address scheme allowing for a total of 2<sup>128</sup> addresses. IPv6 addresses consist of [hexadecimal numbers](https://en.wikipedia.org/wiki/Hexadecimal) (0-9, then a-f for 16 different values) and are separated by colons e.g. `3ffe:1900:4545:3:200:f8ff:fe21:67cf`.
 
 Whilst devices need IP addresses to find locations, domains are more memorable for the people using them. Domain Name Servers (DNS) work as the internet's phone book, translating domains into IP addresses.
 
@@ -2741,4 +2752,4 @@ Cookies
 - Cookies are Strings. They are stored in the browser and can remember information such as usernames and passwords. Cookies are generally encrypted.
 
 Bandwidth
-- Bandwidth measures volume of data in megabytes per second.
+- Bandwidth measures volume of data in bits per second.
